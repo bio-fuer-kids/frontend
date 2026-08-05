@@ -60,21 +60,25 @@ export function HeroSection() {
         ))}
       </div>
 
-      <Container className="">
-        <div className="grid grid-cols-4 rounded-2xl bg-bio-white py-8">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="flex flex-col items-center gap-1 px-4"
-            >
-              <span className="font-serif text-4xl text-bio-dark">
-                {stat.value}
-              </span>
-              <span className="text-sm text-bio-grey">{stat.label}</span>
-            </div>
-          ))}
-        </div>
-      </Container>
+      <div className="mt-2 w-full bg-bio-white">
+        <Container>
+          <div className="grid grid-cols-4 py-16">
+            {stats.map((stat) => (
+              <div
+                key={stat.label}
+                className="flex flex-col items-center gap-2 text-center"
+              >
+                <span className="font-montagu-light text-[48px] leading-none text-bio-dark">
+                  {stat.value}
+                </span>
+                <span className="font-inter text-[16px] font-light">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </div>
     </section>
   );
 }

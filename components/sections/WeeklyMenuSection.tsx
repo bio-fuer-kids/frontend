@@ -1,111 +1,111 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { SectionLabel } from "@/components/ui/SectionLabel";
 
 const weekDays = [
   {
     day: "Montag",
-    date: "18.08.",
-    dish: "Gemüse-Couscous",
-    sides: ["Obstsalat", "Vollkornbrötchen"],
+    dish: "Gemüse-Bolognese mit Vollkornnudeln",
+    sides: "Bunter Blattsalat · Apfelschorle",
+    rotation: "-rotate-2 -translate-y-2",
   },
   {
     day: "Dienstag",
-    date: "19.08.",
-    dish: "Linseneintopf",
-    sides: ["Apfelkompott", "Roggenbrot"],
+    dish: "Hähnchen-Curry mit Basmatireis",
+    sides: "Gurken-Raita · frisches Naan",
+    rotation: "rotate-1 translate-y-1",
   },
   {
     day: "Mittwoch",
-    date: "20.08.",
-    dish: "Nudelauflauf",
-    sides: ["Karottensalat", "Joghurt"],
+    dish: "Rote Linsensuppe mit Vollkornbrot",
+    sides: "Karottensalat · Naturjoghurt",
+    rotation: "-rotate-1 -translate-y-1",
   },
   {
     day: "Donnerstag",
-    date: "21.08.",
-    dish: "Kartoffelsuppe",
-    sides: ["Vollkornbaguette", "Banane"],
+    dish: "Seelachsfilet mit Kartoffelpüree",
+    sides: "Brokkoli · Zitronensauce",
+    rotation: "rotate-2 translate-y-2",
   },
   {
     day: "Freitag",
-    date: "22.08.",
-    dish: "Gemüse-Pfannkuchen",
-    sides: ["Kräuterquark", "Beeren"],
+    dish: "Gemüse-Quiche mit gemischtem Salat",
+    sides: "Tomaten · Kräuterdressing · Obstsalat",
+    rotation: "-rotate-2",
   },
 ];
 
 export function WeeklyMenuSection() {
   return (
-    <section id="speiseplan" className="section-py bg-bio-green">
-      <Container>
-        <div className="text-center">
-          <SectionLabel light>Die aktuelle Woche</SectionLabel>
-          <h2 className="text-h2 mt-3 text-bio-white">
-            Was diese Woche auf den Tisch kommt.
+    <section id="speiseplan" className="bg-bio-green-500 py-24 md:py-55">
+      <Container className="flex flex-col items-center">
+        <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
+          <span className="mb-4 text-[14px] font-light tracking-widest text-bio-dark">
+            SPEISEPLAN
+          </span>
+          <h2 className="font-montagu-light text-5xl font-extralight leading-[1.1] text-bio-dark md:text-[64px]">
+            Was diese Woche
+            <br />
+            auf den Tisch kommt.
           </h2>
-        </div>
-
-        <div className="mt-[64px] grid grid-cols-5 gap-4">
-          {weekDays.map((item) => (
-            <article
-              key={item.day}
-              className="flex min-h-[300px] flex-col rounded-[24px] bg-bio-white p-8"
-            >
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-body-sm text-bio-grey">{item.date}</p>
-                  <h3 className="text-h3 mt-1 text-bio-dark">{item.day}</h3>
-                </div>
-                <Image
-                  src="/Bio-Siegel-EG-Öko-VO-Deutschland.png"
-                  alt=""
-                  width={36}
-                  height={36}
-                  className="rounded-full object-contain"
-                />
-              </div>
-
-              <p className="font-serif mt-8 text-[20px] leading-snug text-bio-dark">
-                {item.dish}
-              </p>
-
-              <ul className="mt-4 flex flex-col gap-1.5">
-                {item.sides.map((side) => (
-                  <li key={side} className="text-body-sm text-bio-grey">
-                    {side}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-12 flex flex-col items-center gap-6">
-          <p className="text-body-sm text-bio-white/80">
-            Wöchentlich wechselnd — 100% Bio-Qualität
+          <p className="mt-6 max-w-135 text-[16px] font-light leading-relaxed text-bio-dark/90">
+            Ein Einblick in unsere Küche. Täglich bis zu 2 Gerichte zur Auswahl,
+            davon mindestens eines vegetarisch. Die genauen Speisepläne sind im
+            Bestellportal einsehbar und werden regelmäßig aktualisiert.
           </p>
-          <div className="flex items-center gap-6">
-            <button
-              type="button"
-              className="h-10 rounded-full border border-bio-border bg-bio-white px-6 text-[14px] font-medium text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white"
-            >
-              Wochenkarte
-            </button>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 text-[14px] font-medium text-bio-white underline-offset-4 transition-opacity hover:underline"
-            >
-              KW 34 Speiseplan (PDF)
-              <Image
-                src="/icons/Icon_Arrow_External-Link.svg"
-                alt=""
-                width={11}
-                height={11}
-                className="brightness-0 invert"
-              />
-            </a>
+        </div>
+
+        {/* Karten-Container */}
+        <div className="mt-20 flex w-full max-w-316 flex-col">
+          <div className="flex flex-wrap justify-center -space-x-2 md:flex-nowrap md:-space-x-3">
+            {weekDays.map((item, index) => (
+              <article
+                key={item.day}
+                className={`relative flex h-75 w-[256px] shrink-0 flex-col justify-between rounded-[40px] border border-bio-dark bg-bio-white p-6 shadow-sm transition-all duration-300 hover:z-10 ${item.rotation}`}
+                style={{ zIndex: index }}
+              >
+                <div className="flex justify-end">
+                  <span className="rounded-lg border border-bio-dark px-3 py-1 text-[10px] uppercase tracking-wider text-bio-dark">
+                    {item.day}
+                  </span>
+                </div>
+
+                <div className="mt-auto text-left">
+                  <h3 className="font-serif text-[22px] font-extralight leading-tight text-bio-dark">
+                    {item.dish}
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-relaxed text-bio-dark/70">
+                    {item.sides}
+                  </p>
+                </div>
+              </article>
+            ))}
           </div>
+
+          <p className="mt-6 w-full pr-4 text-right text-[13px] text-bio-dark md:pr-0">
+            Beispielhafter Speiseplan – wird alle 2–3 Monate aktualisiert.
+          </p>
+        </div>
+
+        {/* Buttons ganz unten */}
+        <div className="mt-12 flex flex-col items-center gap-6 md:flex-row">
+          <button
+            type="button"
+            className="rounded-[24px] border border-bio-dark bg-transparent px-8 py-3 text-[15px] text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white"
+          >
+            Zu den Speiseplänen
+          </button>
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 font-inter text-[15px] font-light text-bio-dark underline-offset-4 hover:underline"
+          >
+            <Image
+              src="/icons/download.svg"
+              alt="download"
+              width={18}
+              height={18}
+            />
+            20-Tage-Speiseplan (PDF)
+          </a>
         </div>
       </Container>
     </section>

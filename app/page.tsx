@@ -11,7 +11,7 @@ import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
-    <div className="mx-auto w-[1600px] bg-bio-sand">
+    <div className="mx-auto w-full overflow-x-hidden bg-bio-white">
       <Header />
       <main>
         <QualitySection />

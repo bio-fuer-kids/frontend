@@ -13,7 +13,7 @@ const navLinks = [
 export function Header() {
   return (
     <header className="w-full h-173px bg-bio-green-500 font-light">
-      <Container className="flex items-center justify-between">
+      <Container className="flex items-center justify-between px-4 py-6">
         <Link href="/" className="flex items-center gap-2">
           <span className="border rounded-[20px] py-2 px-4 gap-2 bg-bio-white">
             Bio für Kids
