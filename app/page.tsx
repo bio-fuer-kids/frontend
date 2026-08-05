@@ -16,11 +16,11 @@ export default function Home() {
       <main>
         <QualitySection />
         <WeeklyMenuSection />
-        <BioCertificationSection />
+        {/* <BioCertificationSection />
         <TestimonialsSection />
         <StorySection />
         <FAQSection />
-        <ContactSection />
+        <ContactSection /> */}
       </main>
       <Footer />
     </div>
