@@ -16,8 +16,8 @@ export default function Home() {
       <main>
         <QualitySection />
         <WeeklyMenuSection />
-        {/* <BioCertificationSection />
-        <TestimonialsSection />
+        <BioCertificationSection />
+        {/* <TestimonialsSection />
         <StorySection />
         <FAQSection />
         <ContactSection /> */}
