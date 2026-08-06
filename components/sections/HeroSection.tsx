@@ -20,7 +20,7 @@ const stats = [
 
 export function HeroSection() {
   return (
-    <section className="pt-16">
+    <section className="pt-58">
       <Container className="flex flex-col items-center text-center">
         <h1 className="max-w-3xl mx-auto text-center font-serif text-[80px] leading-[1.1] text-bio-dark">
           Täglich gekocht.

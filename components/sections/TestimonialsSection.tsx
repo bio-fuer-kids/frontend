@@ -6,25 +6,18 @@ import { useState } from "react";
 
 const testimonials = [
   {
-    quote:
-      "Das Essen schmeckt richtig gut! Besonders der Gemüseeintopf ist mein Lieblingsgericht.",
-    name: "Emma, 9 Jahre",
+    quote: "Das Curry schmeckt mir am besten. Das esse ich jeden Dienstag!",
+    name: "Lena, 8 Jahre",
   },
   {
     quote:
-      "Ich esse jetzt viel mehr Gemüse als früher. Die Köche kochen richtig lecker!",
-    name: "Lukas, 11 Jahre",
-    highlight: true,
+      "Ich mag, dass man immer auswählen kann. Manchmal nehme ich das Gemüse, manchmal das andere.",
+    name: "Tim, 10 Jahre",
   },
   {
     quote:
-      "Meine Freunde und ich freuen uns jeden Tag auf das Mittagessen in der Schule.",
-    name: "Sophie, 8 Jahre",
-  },
-  {
-    quote:
-      "Die Nudeln mit Tomatensoße sind super! Und der Obstsalat danach auch.",
-    name: "Max, 10 Jahre",
+      "Die Köchin kennt meinen Namen und weiß, was ich nicht essen darf. Das finde ich gut.",
+    name: "Mia, 9 Jahre",
   },
 ];
 
@@ -42,18 +35,31 @@ export function TestimonialsSection() {
   const visible = getVisible();
 
   return (
-    <section className="section-py bg-bio-sand-muted">
-      <Container className="flex flex-col items-center">
+    <section className="bg-bio-sand-beige py-[150px]">
+      {/* 
+        Container darf hier für die Pfeile ruhig die volle Breite nutzen, 
+        daher overflow-hidden vermeiden und w-full setzen 
+      */}
+      <div className="mx-auto flex w-full max-w-full flex-col items-center">
+        {/* Illustration */}
         <Image
           src="/icons/Illustration.svg"
           alt=""
-          width={160}
-          height={160}
-          className="mb-6"
+          width={162}
+          height={173}
+          className="mb-8"
         />
-        <h2 className="text-h2 text-bio-dark">Das sagen die Kinder</h2>
 
-        <div className="relative mt-[72px] w-full">
+        {/* Überschrift */}
+        <h2 className="text-center font-montagu-light text-5xl font-extralight leading-[1.1] text-bio-dark md:text-[64px]">
+          Das sagen die
+          <br />
+          Kinder
+        </h2>
+
+        {/* Carousel Container - Volle Breite, relative Positionierung für die Pfeile */}
+        <div className="relative mt-20 flex w-full items-center justify-center px-4 md:px-24">
+          {/* Linker Pfeil - Absolut am linken Fensterrand */}
           <button
             type="button"
             onClick={() =>
@@ -62,31 +68,34 @@ export function TestimonialsSection() {
               )
             }
             aria-label="Vorheriges Zitat"
-            className="absolute -left-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-bio-border bg-bio-white text-xl text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white cursor-pointer"
+            className="absolute left-4 top-1/2 -translate-y-1/2 shrink-0 cursor-pointer p-4 transition-opacity hover:opacity-60 md:left-8 lg:left-12"
           >
-            ‹
+            <Image
+              src="/icons/Icon_Arrow_Small_new.svg"
+              alt="Zurück"
+              width={34}
+              height={25}
+            />
           </button>
 
-          <div className="grid grid-cols-3 gap-12 px-16">
+          {/* Grid für die Zitate - In der Mitte zentriert */}
+          <div className="mx-auto grid w-full max-w-375 grid-cols-1 gap-12 px-4 md:grid-cols-3">
             {visible.map((item, index) => (
               <blockquote
                 key={`${item.name}-${index}`}
-                className="text-center"
+                className="flex flex-col items-center text-center"
               >
-                <p
-                  className={`font-serif text-[22px] leading-[1.5] text-bio-dark ${
-                    "highlight" in item && item.highlight ? "font-semibold" : ""
-                  }`}
-                >
-                  &ldquo;{item.quote}&rdquo;
+                <p className="font-serif text-[24px] font-light text-bio-dark">
+                  "{item.quote}"
                 </p>
-                <footer className="text-body-sm mt-8 text-bio-grey">
+                <footer className="mt-3 text-[11px] font-medium text-bio-dark">
                   {item.name}
                 </footer>
               </blockquote>
             ))}
           </div>
 
+          {/* Rechter Pfeil - Absolut am rechten Fensterrand */}
           <button
             type="button"
             onClick={() =>
@@ -95,28 +104,35 @@ export function TestimonialsSection() {
               )
             }
             aria-label="Nächstes Zitat"
-            className="absolute -right-2 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-bio-border bg-bio-white text-xl text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white cursor-pointer"
+            className="absolute right-4 top-1/2 -translate-y-1/2 shrink-0 cursor-pointer p-4 transition-opacity hover:opacity-60 md:right-8 lg:right-12"
           >
-            ›
+            <Image
+              src="/icons/Icon_Arrow_Small_new.svg"
+              alt="Zurück"
+              width={34}
+              height={25}
+              className="rotate-180"
+            />
           </button>
         </div>
 
-        <div className="mt-12 flex gap-2">
+        {/* Pagination Dots */}
+        <div className="mt-16 flex gap-2">
           {testimonials.map((_, index) => (
             <button
               key={index}
               type="button"
               onClick={() => setCurrentIndex(index)}
               aria-label={`Gehe zu Zitat ${index + 1}`}
-              className={`h-2 rounded-full transition-all cursor-pointer ${
+              className={`h-2 w-2 cursor-pointer rounded-full transition-all ${
                 index === currentIndex
-                  ? "w-8 bg-bio-dark"
-                  : "w-2 bg-bio-dark/20 hover:bg-bio-dark/40"
+                  ? "bg-bio-dark"
+                  : "bg-bio-dark/20 hover:bg-bio-dark/40"
               }`}
             />
           ))}
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

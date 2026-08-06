@@ -90,7 +90,7 @@ export function WeeklyMenuSection() {
         <div className="mt-12 flex flex-col items-center gap-6 md:flex-row">
           <button
             type="button"
-            className="rounded-[24px] border border-bio-dark bg-transparent px-8 py-3 text-[15px] text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white"
+            className="rounded-[20px] border border-bio-dark bg-transparent px-8 py-3 text-[15px] text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white w-60.75"
           >
             Zu den Speiseplänen
           </button>
