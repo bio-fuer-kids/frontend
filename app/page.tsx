@@ -18,8 +18,8 @@ export default function Home() {
         <WeeklyMenuSection />
         <BioCertificationSection />
         <TestimonialsSection />
-        {/* <StorySection />
-        <FAQSection />
+        <StorySection />
+        {/* <FAQSection />
         <ContactSection /> */}
       </main>
       <Footer />

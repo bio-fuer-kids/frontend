@@ -35,7 +35,7 @@ export function TestimonialsSection() {
   const visible = getVisible();
 
   return (
-    <section className="bg-bio-sand-beige py-[150px]">
+    <section className="bg-bio-sand-beige py-37.5">
       {/* 
         Container darf hier für die Pfeile ruhig die volle Breite nutzen, 
         daher overflow-hidden vermeiden und w-full setzen 
