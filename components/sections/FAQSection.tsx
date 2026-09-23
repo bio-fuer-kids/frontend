@@ -4,70 +4,78 @@ import { Container } from "@/components/ui/Container";
 import { PillFilter } from "@/components/ui/PillFilter";
 import { Accordion, type AccordionItem } from "@/components/ui/Accordion";
 import { useMemo, useState } from "react";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 
 const filterOptions = [
   { id: "all", label: "Alle" },
-  { id: "qualitaet", label: "Qualität" },
-  { id: "bestellung", label: "Bestellung" },
-  { id: "lieferung", label: "Lieferung" },
+  { id: "eltern", label: "Für Eltern" },
+  { id: "schulen", label: "Für Schulen" },
+  { id: "schueler", label: "Für Schüler" },
 ];
 
+// Die Fragen wurden exakt an den Entwurf angepasst. Die Antworten sind Mockdata,
+// bis auf die erste, die aus dem Screenshot übernommen wurde.
 const faqItems: AccordionItem[] = [
   {
     id: "1",
-    category: "qualitaet",
-    question: "Woher kommen eure Zutaten?",
+    category: "all",
+    question: "Wo wird das Essen gekocht?",
     answer:
-      "Unsere Zutaten stammen überwiegend aus regionalem Bio-Anbau in Hamburg und Schleswig-Holstein. Wir arbeiten eng mit lokalen Bio-Betrieben zusammen und legen Wert auf kurze Transportwege.",
+      "Direkt vor Ort in der Schulküche. Kein Lieferdienst, kein Aufwärmen – jedes Gericht wird täglich frisch in der jeweiligen Schule zubereitet.",
   },
   {
     id: "2",
-    category: "qualitaet",
-    question: "Sind alle Gerichte bio-zertifiziert?",
-    answer:
-      "84% unserer verwendeten Zutaten sind bio-zertifiziert nach EG-Öko-VO. Wo Bio-Zutaten nicht verfügbar sind, setzen wir auf regionale Alternativen höchster Qualität.",
+    category: "eltern",
+    question: "Was bekommt mein Kind täglich?",
+    answer: "Hier kommt die Antworttext hin.",
   },
   {
     id: "3",
-    category: "bestellung",
-    question: "Wie kann meine Schule teilnehmen?",
-    answer:
-      "Schulen können sich direkt über unser Kontaktformular oder telefonisch bei uns melden. Wir beraten Sie gerne zu den Möglichkeiten und erstellen ein individuelles Angebot.",
+    category: "eltern",
+    question: "Woher kommen die Zutaten?",
+    answer: "Hier kommt die Antworttext hin.",
   },
   {
     id: "4",
-    category: "bestellung",
-    question: "Gibt es allergikerfreundliche Optionen?",
-    answer:
-      "Ja, wir bieten für alle gängigen Allergene alternative Gerichte an. Bitte teilen Sie uns Allergien bei der Anmeldung mit – unsere Köche passen die Menüs entsprechend an.",
+    category: "eltern",
+    question: "Mein Kind hat Allergien – Was tun?",
+    answer: "Hier kommt die Antworttext hin.",
   },
   {
     id: "5",
-    category: "lieferung",
-    question: "Wann wird das Essen geliefert?",
-    answer:
-      "Die frisch zubereiteten Mahlzeiten werden täglich morgens zwischen 10:00 und 11:30 Uhr direkt in die jeweilige Schule geliefert und dort warm gehalten.",
+    category: "eltern",
+    question: "Wie funktioniert die Abrechnung für Eltern?",
+    answer: "Hier kommt die Antworttext hin.",
   },
   {
     id: "6",
-    category: "lieferung",
-    question: "In welchem Gebiet seid ihr tätig?",
-    answer:
-      "Wir beliefern derzeit über 45 Schulen im Großraum Hamburg. Für Anfragen außerhalb unseres Liefergebiets kontaktieren Sie uns gerne – wir prüfen individuelle Lösungen.",
+    category: "schulen",
+    question: "Nach welchen Standarts wird der Speiseplan erstellt?",
+    answer: "Hier kommt die Antworttext hin.",
   },
   {
     id: "7",
-    category: "qualitaet",
-    question: "Wie wird die Qualität kontrolliert?",
-    answer:
-      "Regelmäßige Kontrollen durch unabhängige Prüfer, HACCP-konforme Prozesse und eigene Qualitätsstandards sichern höchste Standards in unserer Küche.",
+    category: "schulen",
+    question: "Was müssen Schulen organisieren?",
+    answer: "Hier kommt die Antworttext hin.",
   },
   {
     id: "8",
-    category: "bestellung",
-    question: "Kann ich als Elternteil Einfluss nehmen?",
-    answer:
-      "Ja, über Elternräte und regelmäßige Feedback-Runden können Eltern Wünsche und Anregungen einbringen. Wir nehmen das Feedback ernst und passen unser Angebot an.",
+    category: "schulen",
+    question: "Können wir Bio für Kids an unserer Schule einführen?",
+    answer: "Hier kommt die Antworttext hin.",
+  },
+  {
+    id: "9",
+    category: "schueler",
+    question: "Kann ich als Schüler Wünsche einbringen?",
+    answer: "Hier kommt die Antworttext hin.",
+  },
+  {
+    id: "10",
+    category: "schueler",
+    question: "Gibt es immer etwas für Fleisch?",
+    answer: "Hier kommt die Antworttext hin.",
   },
 ];
 
@@ -80,20 +88,32 @@ export function FAQSection() {
   }, [activeFilter]);
 
   return (
-    <section id="faq" className="section-py bg-bio-sand-muted">
-      <Container>
-        <h2 className="text-h2 text-center text-bio-dark">
-          Die wichtigsten Antworten auf einen Blick
-        </h2>
+    <section id="faq" className="bg-bio-sand-beige py-24 md:py-32">
+      <Container className="mx-auto flex w-full max-w-4xl flex-col items-center">
+        {/* Angepasster Header aus dem Beispiel */}
+        <div className="mb-12 flex flex-col items-center text-center">
+          <SectionLabel>FAQ</SectionLabel>
+          <h2 className="mt-4 text-h2-section text-[48px] leading-tight text-bio-dark md:text-5xl lg:text-[56px]">
+            Die wichtigsten
+            <br />
+            Antworten auf einen
+            <br />
+            Blick
+          </h2>
+        </div>
 
+        {/* Pill-Filter */}
         <PillFilter
           options={filterOptions}
           activeId={activeFilter}
           onChange={setActiveFilter}
-          className="mt-10 justify-center"
+          className="mb-16 justify-center"
         />
 
-        <Accordion items={filteredItems} className="mt-6" />
+        {/* Accordion-Liste */}
+        <div className="w-full">
+          <Accordion items={filteredItems} className="w-full" />
+        </div>
       </Container>
     </section>
   );

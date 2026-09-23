@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Container } from "@/components/ui/Container";
+import { SectionLabel } from "../ui/SectionLabel";
 
 const weekDays = [
   {
@@ -36,21 +36,19 @@ const weekDays = [
 
 export function WeeklyMenuSection() {
   return (
-    <section id="speiseplan" className="bg-bio-green-500 py-24 md:py-55">
+    <section id="speiseplan" className="bg-bio-green-500 py-24 md:py-26">
       <Container className="flex flex-col items-center">
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
-          <span className="mb-4 text-[14px] font-light tracking-widest text-bio-dark">
-            SPEISEPLAN
-          </span>
-          <h2 className="font-montagu-light text-5xl font-extralight leading-[1.1] text-bio-dark md:text-[64px]">
-            Was diese Woche
-            <br />
-            auf den Tisch kommt.
+          <SectionLabel> SPEISEPLAN</SectionLabel>
+
+          <h2 className="mt-3 max-w-lg text-h2-section leading-none text-bio-dark md:text-6xl">
+            Ein Blick in unsere Küche.
           </h2>
-          <p className="mt-6 max-w-135 text-[16px] font-light leading-relaxed text-bio-dark/90">
-            Ein Einblick in unsere Küche. Täglich bis zu 2 Gerichte zur Auswahl,
-            davon mindestens eines vegetarisch. Die genauen Speisepläne sind im
-            Bestellportal einsehbar und werden regelmäßig aktualisiert.
+          <p className="mt-4 max-w-124 text-[16px] text-bio-dark leading-relaxed">
+            Täglich bieten wir eine Hauptspeise mit verschiedenen Komponenten
+            zur Auswahl. Zu jedem Fleisch- oder Fischgericht gibt es eine
+            vegetarische Alternative. Die genauen Speisepläne sind im
+            Bestellportal einsehbar.
           </p>
         </div>
 
@@ -80,10 +78,6 @@ export function WeeklyMenuSection() {
               </article>
             ))}
           </div>
-
-          <p className="mt-6 w-full pr-4 text-right text-[13px] text-bio-dark md:pr-0">
-            Beispielhafter Speiseplan – wird alle 2–3 Monate aktualisiert.
-          </p>
         </div>
 
         {/* Buttons ganz unten */}
@@ -94,18 +88,6 @@ export function WeeklyMenuSection() {
           >
             Zu den Speiseplänen
           </button>
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 font-inter text-[15px] font-light text-bio-dark underline-offset-4 hover:underline"
-          >
-            <Image
-              src="/icons/download.svg"
-              alt="download"
-              width={18}
-              height={18}
-            />
-            20-Tage-Speiseplan (PDF)
-          </a>
         </div>
       </Container>
     </section>

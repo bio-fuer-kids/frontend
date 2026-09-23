@@ -1,7 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { HeroSection } from "@/components/sections/HeroSection";
 import { QualitySection } from "@/components/sections/QualitySection";
+import { UnserEssen } from "@/components/sections/UnserEssen";
 import { WeeklyMenuSection } from "@/components/sections/WeeklyMenuSection";
 import { BioCertificationSection } from "@/components/sections/BioCertificationSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
@@ -15,12 +15,13 @@ export default function Home() {
       <Header />
       <main>
         <QualitySection />
+        <UnserEssen />
         <WeeklyMenuSection />
         <BioCertificationSection />
         <TestimonialsSection />
         <StorySection />
-        {/* <FAQSection />
-        <ContactSection /> */}
+        <FAQSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>

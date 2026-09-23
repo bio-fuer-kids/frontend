@@ -56,6 +56,42 @@ body {
   text-transform: uppercase;
 }
 
+@utility text-essen {
+  white-space: pre-line;
+  font-family: var(--font-serif);
+  font-weight: 250;
+  font-size: 32px;
+  line-height: 1.25;
+}
+
+@utility text_overline {
+  font-family: var(--font-inter);
+  font-weight: 350;
+  text-align: center;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+@utility text_slide_header {
+  font-family: var(--font-serif);
+  font-weight: 250;
+  font-size: 48px;
+  line-height: 1;
+}
+@utility text_slide {
+  font-family: var(--font-inter);
+  font-weight: 250;
+  font-size: 16px;
+  line-height: 1;
+}
+
+@utility text_testimonial {
+  font-family: var(--font-serif);
+  font-weight: 350;
+  text-align: center;
+  font-size: 24px;
+}
+
 @utility text-h1 {
   font-family: var(--font-serif);
   font-size: 64px;
@@ -67,6 +103,14 @@ body {
 @utility text-h2 {
   font-family: var(--font-serif);
   font-size: 48px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+@utility text-h2-section {
+  font-family: var(--font-serif);
+  font-size: 64px;
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1.1;

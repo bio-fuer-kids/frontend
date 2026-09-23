@@ -3,26 +3,26 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
 const galleryImages = [
-  "/header_gallerie_1.png",
-  "/header_gallerie_2.png",
-  "/header_gallerie_3.png",
-  "/header_gallerie_4.png",
-  "/header_gallerie_5.png",
-  "/header_gallerie_6 Kopie.png",
+  "/gallerie_1.png",
+  "/gallerie_2.png",
+  "/gallerie_3.png",
+  "/gallerie_4.png",
+  "/gallerie_5.png",
+  "/gallerie_6.png",
+  "/gallerie_7.png",
 ];
 
 const stats = [
-  { value: "2.000+", label: "Kinder täglich versorgt" },
-  { value: "13+", label: "Jahre Erfahrung in Hamburg" },
-  { value: "24", label: "Fachkräfte im Einsatz" },
-  { value: "94%", label: "DGE-Audit-Bewertung" },
+  { value: "15+", label: "Jahre Erfahrung in Hamburg" },
+  { value: "4.000+", label: "Kinder täglich versorgt" },
+  { value: "85%", label: "Bio Anteil" },
 ];
 
 export function HeroSection() {
   return (
-    <section className="pt-58">
+    <section className="pt-26">
       <Container className="flex flex-col items-center text-center">
-        <h1 className="max-w-3xl mx-auto text-center font-serif text-[80px] leading-[1.1] text-bio-dark">
+        <h1 className="max-w-3xl mx-auto text-center font-serif font-light text-[80px] leading-[1.1] text-bio-dark">
           Täglich gekocht.
           <br />
           Frisch & gesund.
@@ -32,17 +32,24 @@ export function HeroSection() {
           <Button
             variant="solid"
             size="sm"
-            className="border bg-transparent text-bio-dark hover:bg-bio-dark hover:text-bio-whit py-6 px-8 rounded-[20px]!"
+            className="border text-[16px] bg-transparent text-bio-dark hover:bg-bio-dark hover:text-bio-white py-3 px-8 rounded-[21px]! h-12 w-[176px]"
           >
-            Zum Bestellportal
+            Jetzt bestellen
           </Button>
-          <button className="underline underline-offset-4">
-            Mehr erfahren
-          </button>
         </div>
       </Container>
 
-      <div className="mt-16 flex w-full snap-x snap-mandatory gap-2 overflow-x-auto px-2 scrollbar-none [&::-webkit-scrollbar]:hidden">
+      <div className="relative">
+        <Image
+          src="/icons/Icon_Arrow_Large.png"
+          alt="Weitere Bilder anzeigen"
+          width={32}
+          height={16}
+          className="object-contain text-bio-dark absolute right-3 bottom-[-100]"
+        />
+      </div>
+
+      <div className="mt-28 flex w-full snap-x snap-mandatory gap-2 overflow-x-auto px-2 scrollbar-none [&::-webkit-scrollbar]:hidden">
         {galleryImages.map((src, index) => (
           <div
             key={src}
@@ -62,18 +69,14 @@ export function HeroSection() {
 
       <div className="mt-2 w-full bg-bio-white">
         <Container>
-          <div className="grid grid-cols-4 py-16">
+          <div className="grid grid-cols-3 py-12 px-47">
             {stats.map((stat) => (
               <div
                 key={stat.label}
                 className="flex flex-col items-center gap-2 text-center"
               >
-                <span className="font-montagu-light text-[48px] leading-none text-bio-dark">
-                  {stat.value}
-                </span>
-                <span className="font-inter text-[16px] font-light">
-                  {stat.label}
-                </span>
+                <span className="text_slide_header">{stat.value}</span>
+                <span className="text_slide">{stat.label}</span>
               </div>
             ))}
           </div>

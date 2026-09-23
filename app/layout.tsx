@@ -21,7 +21,7 @@ const montaguSlab_light = localFont({
   variable: "--font-montagu-light",
   display: "swap",
   style: "normal",
-  weight: "100",
+  weight: "100 600",
 });
 
 //

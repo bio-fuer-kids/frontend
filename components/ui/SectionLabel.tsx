@@ -14,8 +14,8 @@ export function SectionLabel({
   return (
     <p
       className={cn(
-        "font-inter font-extralight text-center",
-        light ? "text-bio-white/80" : "text-bio-green-medium",
+        "text_overline",
+        light ? "text-bio-white" : "text-bio-green-medium",
         className,
       )}
     >
