@@ -5,7 +5,6 @@ const testimonials = [
     quote: "Das Curry schmeckt mir am besten. Das esse ich jeden Dienstag!",
     name: "Lena, 8 Jahre",
     school: "(Moßbach-Schule)",
-    // Linke Karte
     rotation: "z-10 md:-rotate-2",
   },
   {
@@ -13,7 +12,6 @@ const testimonials = [
       "Ich mag, dass man immer auswählen kann. Manchmal nehme ich das Gemüse, manchmal das andere.",
     name: "Tim, 10 Jahre",
     school: "(Wilhelm-Löhe-Schule)",
-    // Mittlere Karte: Durch negatives Margin (-mt-6) ein Stück nach oben gerutscht
     rotation: "z-20 md:-mt-1",
   },
   {
@@ -21,7 +19,6 @@ const testimonials = [
       "Die Köchin kennt meinen Namen und weiß, was ich nicht essen darf. Das finde ich gut.",
     name: "Mia, 9 Jahre",
     school: "(Walter-Stein-Schule)",
-    // Rechte Karte
     rotation: "z-20 md:rotate-2",
   },
 ];
