@@ -4,11 +4,11 @@ import { Container } from "@/components/ui/Container";
 export function ContactSection() {
   return (
     <section id="kontakt" className="flex flex-col">
-      <div className="bg-bio-green-500 py-24 md:py-32">
+      <div className="bg-bio-green-500 py-24 md:py-30">
         <Container className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
           <div className="flex flex-col justify-between">
             <div>
-              <span className="mb-4 block font-inter text-[12px] uppercase tracking-wide text-bio-dark">
+              <span className="mb-3 block font-inter text-[12px] uppercase tracking-wide text-bio-dark">
                 Kontakt
               </span>
               <h2 className="font-serif text-4xl leading-tight text-bio-dark md:text-5xl lg:text-[56px]">
@@ -138,7 +138,7 @@ export function ContactSection() {
             {/* Zeile 4: Button */}
             <button
               type="submit"
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-full border border-bio-dark bg-transparent py-4 font-inter text-[15px] text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-full border border-bio-dark bg-transparent py-4 font-inter text-[15px] text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-green-200"
             >
               Nachricht absenden
               <svg

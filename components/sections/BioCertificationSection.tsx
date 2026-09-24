@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 
 export function BioCertificationSection() {
   return (
-    <section className="bg-bio-white py-16 md:py-25 md:px-95">
+    <section className="bg-bio-white py-16 md:py-25 md:px-62.5">
       <Container className="flex flex-col items-center text-center">
         {/* Icon: Zentriert durch den Parent-Container */}
         <Image

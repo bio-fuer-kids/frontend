@@ -33,7 +33,7 @@ export function QualitySection() {
       <Container className="flex flex-col items-center text-center">
         <SectionLabel>UNSER ESSEN</SectionLabel>
 
-        <h2 className="mt-3 max-w-xl text-h2-section text-5xl leading-none text-bio-dark md:text-6xl">
+        <h2 className="mt-3 max-w-xl text-h2-section text-4xl leading-none text-bio-dark md:text-5xl">
           Qualität, die man schmeckt
         </h2>
 

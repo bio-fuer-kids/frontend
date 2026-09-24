@@ -20,7 +20,7 @@ export function Accordion({ items, className }: AccordionProps) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <div className={cn("divide-y divide-bio-dark/10", className)}>
+    <div className={cn("divide-y divide-bio-dark", className)}>
       {items.map((item) => {
         const isOpen = openId === item.id;
         return (
@@ -28,9 +28,9 @@ export function Accordion({ items, className }: AccordionProps) {
             <button
               type="button"
               onClick={() => setOpenId(isOpen ? null : item.id)}
-              className="flex w-full items-center justify-between gap-8 py-6 text-left cursor-pointer"
+              className="flex w-full items-center justify-between gap-8 py-4 text-left cursor-pointer"
             >
-              <span className="font-serif text-xl text-bio-dark">
+              <span className="font-serif text-2xl text-bio-dark">
                 {item.question}
               </span>
               <Image

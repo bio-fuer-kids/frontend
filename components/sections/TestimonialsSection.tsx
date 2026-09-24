@@ -25,7 +25,7 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-bio-sand-beige pt-24 md:pt-32">
+    <section className="bg-bio-sand-beige pt-30 md:pt-30">
       <Container className="flex flex-col items-center">
         {/* Überschrift */}
         <h2 className="mt-3 max-w-xl text-center text-h2-section leading-tight text-bio-dark md:text-5xl">

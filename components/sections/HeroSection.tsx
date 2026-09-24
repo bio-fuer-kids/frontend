@@ -69,7 +69,7 @@ export function HeroSection() {
 
       <div className="mt-2 w-full bg-bio-white">
         <Container>
-          <div className="grid grid-cols-3 py-12 px-47">
+          <div className="grid grid-cols-3 gap-30 py-12 px-47">
             {stats.map((stat) => (
               <div
                 key={stat.label}

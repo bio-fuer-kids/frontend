@@ -7,19 +7,19 @@ const suppliers = ["GRELL NATURKOST", "CHEFS CULINAR", "MEKLENBURGER LANDPUTE"];
 
 export function StorySection() {
   return (
-    <section id="ueber-uns" className="bg-bio-green-500 py-24 md:py-32">
+    <section id="ueber-uns" className="bg-bio-green-500 pt-24 md:pt-30 pb-8">
       <Container className="mx-auto flex w-full flex-col items-center">
         {/* === ZENTRIERTER HEADER === */}
         <div className="mb-16 md:mb-24 flex flex-col items-center text-center">
           <SectionLabel>ÜBER UNS</SectionLabel>
-          <h2 className="mt-4 text-h2-section text-[48px]! leading-tight text-bio-dark md:text-5xl">
+          <h2 className="mt-3 text-h2-section text-[48px]! leading-tight text-bio-dark md:text-5xl">
             Seit 2011 in Hamburgs
             <br />
             Schulküchen
           </h2>
         </div>
 
-        <div className="flex w-full flex-col gap-16 md:gap-24">
+        <div className="flex w-full flex-col gap-12 md:gap-12">
           {/* === REIHE 1 === */}
           <div className="flex flex-col items-center gap-8 md:flex-row md:gap-16">
             {/* Text-Container 1 */}

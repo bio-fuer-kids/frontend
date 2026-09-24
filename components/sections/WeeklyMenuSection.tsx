@@ -36,15 +36,15 @@ const weekDays = [
 
 export function WeeklyMenuSection() {
   return (
-    <section id="speiseplan" className="bg-bio-green-500 py-24 md:py-26">
+    <section id="speiseplan" className="bg-bio-green-500 py-30 md:py-30">
       <Container className="flex flex-col items-center">
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <SectionLabel> SPEISEPLAN</SectionLabel>
 
-          <h2 className="mt-3 max-w-lg text-h2-section leading-none text-bio-dark md:text-6xl">
+          <h2 className="mt-3 max-w-lg text-h2-section leading-none text-bio-dark md:text-5xl">
             Ein Blick in unsere Küche.
           </h2>
-          <p className="mt-4 max-w-124 text-[16px] text-bio-dark leading-relaxed">
+          <p className="mt-3 max-w-124 text-[16px] text-bio-dark leading-relaxed">
             Täglich bieten wir eine Hauptspeise mit verschiedenen Komponenten
             zur Auswahl. Zu jedem Fleisch- oder Fischgericht gibt es eine
             vegetarische Alternative. Die genauen Speisepläne sind im

@@ -25,13 +25,13 @@ const artikel_arr = [
 
 export function UnserEssen() {
   return (
-    <section id="qualitaet" className="pt-24 bg-bio-sand-beige">
+    <section id="qualitaet" className="pt-30 bg-bio-sand-beige">
       <Container className="flex flex-col items-center">
         {/* Zentrierter Header-Bereich */}
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <SectionLabel>WARUM BIO?</SectionLabel>
 
-          <h2 className="mt-4 text-h2-section leading-tight text-bio-dark md:text-5xl">
+          <h2 className="mt-3 text-h2-section leading-tight text-bio-dark md:text-5xl">
             Bewusst essen.
             <br />
             Gesund wachsen.
@@ -45,7 +45,7 @@ export function UnserEssen() {
         </div>
 
         {/* Artikel-Liste */}
-        <div className="mt-20 w-full grid grid-5 gap-8">
+        <div className="mt-25 w-full grid grid-5 gap-8">
           {artikel_arr.map((artikel, index) => {
             const isEven = index % 2 === 0;
 
