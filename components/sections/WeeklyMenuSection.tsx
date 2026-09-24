@@ -36,8 +36,13 @@ const weekDays = [
 
 export function WeeklyMenuSection() {
   return (
-    <section id="speiseplan" className="bg-bio-green-500 py-30 md:py-30">
+    // overflow-x-hidden hier auf der Section hinzugefügt, um horizontales Wackeln durch w-screen zu vermeiden
+    <section
+      id="speiseplan"
+      className="bg-bio-green-500 py-30 md:py-30 overflow-x-hidden"
+    >
       <Container className="flex flex-col items-center">
+        {/* Header (100% Unangetastet) */}
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center">
           <SectionLabel> SPEISEPLAN</SectionLabel>
 
@@ -54,11 +59,18 @@ export function WeeklyMenuSection() {
 
         {/* Karten-Container */}
         <div className="mt-20 flex w-full max-w-316 flex-col">
-          <div className="flex flex-wrap justify-center -space-x-2 md:flex-nowrap md:-space-x-3">
+          {/*
+            DER TRICK:
+            max-lg:w-screen max-lg:relative max-lg:left-1/2 max-lg:-translate-x-1/2
+            Das ignoriert die grünen Ränder des Containers komplett. Die Scroll-Leiste geht jetzt von Bildschirmkante zu Bildschirmkante!
+            Der Desktop ignoriert das alles und nutzt weiterhin dein flex-wrap.
+          */}
+          <div className="flex flex-wrap justify-center -space-x-2 md:flex-nowrap md:-space-x-3 max-lg:justify-start max-lg:w-screen max-lg:relative max-lg:left-1/2 max-lg:-translate-x-1/2 max-lg:px-4 max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-mandatory max-lg:py-8 max-lg:-my-8 scrollbar-none [&::-webkit-scrollbar]:hidden">
             {weekDays.map((item, index) => (
               <article
                 key={item.day}
-                className={`relative flex h-75 w-[256px] shrink-0 flex-col justify-between rounded-[40px] border border-bio-dark bg-bio-white p-6 shadow-sm transition-all duration-300 hover:z-10 ${item.rotation}`}
+                // Dein Original-Styling (Ich habe dein border-red-500 und z-40 wieder auf den Original-Zustand zurückgesetzt, da es nicht mehr gebraucht wird)
+                className={`relative flex h-75 w-[256px] shrink-0 max-lg:snap-center flex-col justify-between rounded-[40px] border border-bio-dark bg-bio-white p-6 shadow-sm transition-all duration-300 hover:z-10 ${item.rotation}`}
                 style={{ zIndex: index }}
               >
                 <div className="flex justify-end">
@@ -77,10 +89,12 @@ export function WeeklyMenuSection() {
                 </div>
               </article>
             ))}
+            {/* Dieser unsichtbare Spacer sorgt dafür, dass die "Freitag"-Karte ganz am Ende nicht an der rechten Handykante klebt */}
+            <div className="shrink-0 w-4 lg:hidden" />
           </div>
         </div>
 
-        {/* Buttons ganz unten */}
+        {/* Buttons ganz unten (100% Unangetastet) */}
         <div className="mt-12 flex flex-col items-center gap-6 md:flex-row">
           <button
             type="button"
