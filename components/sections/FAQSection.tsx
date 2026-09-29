@@ -13,8 +13,6 @@ const filterOptions = [
   { id: "schueler", label: "Für Schüler" },
 ];
 
-// Die Fragen wurden exakt an den Entwurf angepasst. Die Antworten sind Mockdata,
-// bis auf die erste, die aus dem Screenshot übernommen wurde.
 const faqItems: AccordionItem[] = [
   {
     id: "1",
@@ -88,29 +86,50 @@ export function FAQSection() {
   }, [activeFilter]);
 
   return (
-    <section id="faq" className="bg-bio-sand-beige pt-25 md:pb-25">
+    // max-md:pt-16 und max-md:pb-16 verringern das wuchtige Padding auf dem Handy
+    <section
+      id="faq"
+      className="bg-bio-sand-beige pt-25 md:pb-25 max-md:pt-16 max-md:pb-16"
+    >
       <Container className="mx-auto flex w-full max-w-4xl flex-col items-center">
-        {/* Angepasster Header aus dem Beispiel */}
-        <div className="mb-12 flex flex-col items-center text-center">
+        {/* Header */}
+        <div className="mb-12 max-md:mb-8 flex flex-col items-center text-center">
           <SectionLabel>FAQ</SectionLabel>
-          <h2 className="mt-3 text-h2-section text-[48px] leading-tight text-bio-dark md:text-5xl lg:text-[48px]">
-            Die wichtigsten
-            <br />
-            Antworten auf einen
-            <br />
-            Blick
+
+          <h2 className="mt-3 text-h2-section text-[48px] leading-tight text-bio-dark md:text-5xl lg:text-[48px] max-md:text-[40px]">
+            {/* Zeigt sich NUR ab Tablet (Dein Original-Code) */}
+            <span className="max-md:hidden">
+              Die wichtigsten
+              <br />
+              Antworten auf einen
+              <br />
+              Blick
+            </span>
+            {/* Zeigt sich NUR auf Mobile (Neues Design mit exaktem Umbruch) */}
+            <span className="hidden max-md:block leading-[1.1]">
+              Die wichtigsten
+              <br />
+              Antworten auf
+              <br />
+              einen Blick
+            </span>
           </h2>
         </div>
 
-        {/* Pill-Filter */}
+        {/* 
+          Pill-Filter: 
+          Der bekannte horizontal-scroll Trick mit w-screen und px-6 für Mobile, 
+          damit man die Buttons flüssig zur Seite wischen kann.
+        */}
         <PillFilter
           options={filterOptions}
           activeId={activeFilter}
           onChange={setActiveFilter}
-          className="mb-16 justify-center"
+          // Dein Original kombiniert mit den Mobile-Klassen
+          className="mb-16 justify-center max-md:mb-10 max-md:flex-nowrap max-md:justify-start max-md:w-screen max-md:relative max-md:left-1/2 max-md:-translate-x-1/2 max-md:px-10 gap-0! max-md:overflow-x-auto scrollbar-none [&::-webkit-scrollbar]:hidden"
         />
 
-        {/* Accordion-Liste */}
+        {/* Accordion-Liste (100% Unangetastet) */}
         <div className="w-full">
           <Accordion items={filteredItems} className="w-full" />
         </div>

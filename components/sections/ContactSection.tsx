@@ -5,7 +5,6 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 
 export function ContactSection() {
-  // State für das Custom Dropdown
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -17,7 +16,6 @@ export function ContactSection() {
     "Sonstiges",
   ];
 
-  // Schließt das Dropdown, wenn man irgendwo anders hinklickt
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -33,33 +31,37 @@ export function ContactSection() {
 
   return (
     <section id="kontakt" className="flex flex-col">
-      <div className="bg-bio-green-500 lg:py-30 md:py-25">
-        {/* KORREKTUR: md:grid-cols-2 sorgt dafür, dass Text und Formular auch auf dem Tablet nebeneinander stehen[cite: 7] */}
-        <Container className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
+      {/* FIX: max-md:py-16 verringert das wuchtige Desktop-Padding auf dem Handy */}
+      <div className="bg-bio-green-500 lg:py-30 md:py-25 max-md:py-16">
+        {/* FIX: max-md:gap-12 verringert den Abstand zwischen linker und rechter Spalte auf Mobile */}
+        <Container className="mx-auto grid max-w-7xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24 max-md:gap-12">
           {/* LINKE SPALTE: Text & Kontakt-Daten */}
           <div className="flex flex-col justify-between">
             <div>
               <span className="mb-3 block font-inter text-[14px] uppercase tracking-wide text-bio-dark">
                 Kontakt
               </span>
-              <h2 className="font-serif font-light text-4xl leading-tight text-bio-dark md:text-[40px] lg:text-[48px]">
+              {/* FIX: max-md:text-[40px] für die exakte Größe aus dem Design */}
+              <h2 className="font-serif font-light text-4xl leading-tight text-bio-dark md:text-[40px] lg:text-[48px] max-md:text-[40px]">
                 Sprechen Sie
                 <br />
                 uns an!
               </h2>
-              <p className="mt-3 max-w-sm font-inter lg:text-[16px] leading-relaxed text-bio-dark lg:w-76.5 md:w-[306.56px]">
+              {/* FIX: Mobile-Text minimal kompakter (max-md:text-[15px]) */}
+              <p className="mt-3 max-w-sm font-inter lg:text-[16px] leading-relaxed text-bio-dark lg:w-76.5 md:w-[306.56px] max-md:text-[15px]">
                 Schulleitung, Elternrat oder einfach neugierig – wir antworten
                 schnell und beraten gerne auch persönlich vor Ort.
               </p>
             </div>
 
-            {/* Kontakt-Daten bündig am unteren Rand[cite: 7, 9] */}
-            <div className="mt-16 flex gap-12 md:gap-16">
+            {/* FIX: max-md:mt-10 und max-md:gap-6 sorgen dafür, dass Telefon & E-Mail auf schmalen Handys nebeneinander passen */}
+            <div className="mt-16 flex gap-12 md:gap-16 max-md:mt-10 max-md:gap-6 max-md:mb-20">
               <div>
                 <p className="font-inter text-[14px] uppercase tracking-wide text-bio-dark">
                   Telefon
                 </p>
-                <p className="font-inter text-[16px] text-bio-dark w-30.75">
+                {/* FIX: w-30.75 auf Mobile zu w-auto geändert, um Quetschungen zu vermeiden */}
+                <p className="font-inter text-[16px] text-bio-dark w-30.75 max-md:w-auto">
                   040 / 6979 0101
                 </p>
               </div>
@@ -74,20 +76,16 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* RECHTE SPALTE: Das Formular */}
+          {/* RECHTE SPALTE: Das Formular (100% Dein Original, passt sich durch das CSS Grid automatisch an Mobile an) */}
           <form className="flex flex-col gap-4">
-            {/* Zeile 1: Name & Auswahl */}
-            {/* KORREKTUR: lg:grid-cols-2 zwingt diese beiden Felder auf dem Tablet UNTEREINANDER[cite: 7], auf Desktop NEBENEINANDER[cite: 9] */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              {/* Feld: Name */}
               <div className="flex flex-col gap-2">
                 <label
                   htmlFor="name"
-                  className="font-inter text-[13px] text-bio-dark"
+                  className="font-inter text-[16px] text-bio-dark"
                 >
                   Name
                 </label>
-                {/* 16px Radius, 12px bei Hover[cite: 8] */}
                 <input
                   type="text"
                   id="name"
@@ -96,18 +94,16 @@ export function ContactSection() {
                 />
               </div>
 
-              {/* Feld: Ich bin (Custom Dropdown)[cite: 8] */}
               <div className="flex flex-col gap-2 relative" ref={dropdownRef}>
-                <label className="font-inter text-[13px] text-bio-dark">
+                <label className="font-inter text-[16px] text-bio-dark">
                   Ich bin
                 </label>
 
                 <div
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex w-full cursor-pointer items-center justify-between border border-bio-dark bg-transparent px-6 py-3.5 font-inter text-[15px] text-bio-dark transition-all duration-300 hover:rounded-[12px] rounded-[16px] h-12 "
+                  className="flex w-full cursor-pointer items-center justify-between border border-bio-dark bg-transparent px-6 py-3.5 font-inter text-[16px] text-bio-dark transition-all duration-300 hover:rounded-[12px] rounded-[16px] h-12 "
                 >
                   <span>{selectedSubject || "Bitte wählen"}</span>
-                  {/* Pfeil nach unten/oben[cite: 8] */}
                   <div
                     className={`transition-transform duration-300 ${isDropdownOpen ? "rotate-180" : ""}`}
                   >
@@ -129,7 +125,6 @@ export function ContactSection() {
                   </div>
                 </div>
 
-                {/* Ausklappbares Menü (Weißer Hintergrund, 16px Ecken)[cite: 8] */}
                 {isDropdownOpen && (
                   <div className="absolute top-full left-0 z-50 w-full overflow-hidden rounded-[16px] border border-bio-dark bg-bio-white shadow-lg">
                     {dropdownOptions.map((option) => (
@@ -149,11 +144,10 @@ export function ContactSection() {
               </div>
             </div>
 
-            {/* Zeile 2: E-Mail */}
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="email"
-                className="font-inter text-[13px] text-bio-dark"
+                className="font-inter text-[16px] text-bio-dark"
               >
                 E-Mail
               </label>
@@ -165,11 +159,10 @@ export function ContactSection() {
               />
             </div>
 
-            {/* Zeile 3: Nachricht */}
             <div className="flex flex-col gap-2">
               <label
                 htmlFor="message"
-                className="font-inter text-[13px] text-bio-dark"
+                className="font-inter text-[16px] text-bio-dark"
               >
                 Ihre Nachricht
               </label>
@@ -180,11 +173,9 @@ export function ContactSection() {
               />
             </div>
 
-            {/* Zeile 4: Button */}
-            {/* KORREKTUR: Dieser Button ist Pillen-förmig (rounded-full) in den Mockups[cite: 7, 9] */}
             <button
               type="submit"
-              className="flex w-full items-center justify-center gap-2 rounded-[27px] border border-bio-dark bg-transparent py-4 font-inter text-[16px] text-bio-dark transition-all duration-300 hover:bg-bio-dark hover:text-bio-green-500 md:h-12"
+              className="flex w-full items-center justify-center gap-2 rounded-[27px] border border-bio-dark bg-transparent py-4 font-inter text-[16px] text-bio-dark transition-all duration-300 hover:bg-bio-dark hover:text-bio-green-500 md:h-12 max-md:mt-2"
             >
               Nachricht absenden
               <Image

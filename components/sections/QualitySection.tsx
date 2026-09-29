@@ -39,86 +39,72 @@ export function QualitySection() {
     gsap.registerPlugin(ScrollTrigger);
     let mm = gsap.matchMedia();
 
-    // GSAP-Animation greift AUSSCHLIESSLICH bei Tablet (768px bis 1023px).
-    // Dein Desktop (ab 1024px) bleibt davon zu 100 % unberührt!
-    mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
-      // Bereite Karte 2 und 3 vor: Versteckt und weit rechts außerhalb des Bildschirms
+    mm.add("(max-width: 1023px)", () => {
       gsap.set([cardsRef.current[1], cardsRef.current[2]], {
         x: "100vw",
         opacity: 0,
       });
 
-      // Der echte Awwwards-Effekt: Eine Timeline, die die Sektion festpinnt!
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 10%", // Pinnt die Sektion, wenn sie fast ganz oben ist
-          end: "+=1500", // Du musst 1500px scrollen, um die ganze Animation zu erleben (wirkt super flüssig)
-          pin: true, // HIER IST DIE MAGIE: Die Seite friert beim Scrollen ein!
-          scrub: 0.5, // 0.5s Nachzieh-Effekt beim Scrollen (Buttery Smooth!)
+          // GEÄNDERT: "top top" lässt dich weiter scrollen, bis die Sektion ganz oben am Rand ist.
+          // Falls die Karten immer noch angeschnitten sind, probiere "top -10%" oder "center center".
+          start: "top -14%",
+          end: "+=1500",
+          pin: true,
+          scrub: 0.5,
         },
       });
 
-      // Zuerst fährt Karte 2 butterweich über Karte 1
       tl.to(cardsRef.current[1], {
         x: 0,
         opacity: 1,
         duration: 1,
         ease: "power1.out",
-      })
-        // Danach fährt Karte 3 butterweich über Karte 2
-        .to(cardsRef.current[2], {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: "power1.out",
-        });
+      }).to(cardsRef.current[2], {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      });
     });
 
-    return () => mm.revert(); // Räumt GSAP bei Unmount sauber auf
+    return () => mm.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
       id="qualitaet"
-      className="lg:pt-30 md:pt-25 pb-2 bg-bio-sand-beige overflow-hidden"
+      className="lg:pt-30 md:pt-25 pb-2 bg-bio-sand-beige overflow-hidden max-md:pt-20 max-md:pb-20"
     >
-      <Container className="flex flex-col items-center text-center">
+      <Container className="flex flex-col items-center text-center px-4 md:px-8">
         <SectionLabel>UNSER ESSEN</SectionLabel>
 
-        <h2 className="mt-3 max-w-xl text-h2-section text-4xl leading-none text-bio-dark md:text-5xl">
+        <h2 className="mt-3 max-md:mt-3 max-w-xl text-h2-section text-4xl leading-12 text-bio-dark md:text-5xl max-md:text-[40px] max-md:w-81.5">
           Qualität, die man schmeckt
         </h2>
 
-        <p className="mt-3 max-w-134 text-[16px] text-bio-dark leading-normal">
+        <p className="mt-3 max-md:mt-3 max-w-134 text-[16px] text-bio-dark leading-normal  max-md:mb-16 max-md:w-80">
           Wir kochen täglich frisch und gesund – mit echten Köchen vor Ort in
           der Schulküche. So bleiben Vitamine und Inhaltsstoffe erhalten, und
           wir wissen genau, was auf den Tisch kommt.
         </p>
 
-        {/* 
-          WRAPPER:
-          - max-md:flex-col: Auf dem Handy einfach untereinander
-          - md:-space-x-[220px]: Erzeugt auf dem Tablet den exakten Überlappungs-Look
-          - lg:space-x-0: DEAKTIVIERT die Überlappung für Desktop komplett (alles liegt normal nebeneinander wie in deinem Code)
-        */}
-        <div className="mt-25 w-full flex max-md:flex-col justify-center items-center max-md:gap-8 md:-space-x-55 lg:space-x-0">
+        <div className="mt-25 w-full flex justify-center items-center md:-space-x-55 lg:space-x-0 max-md:mt-16 max-md:-space-x-[calc(100vw-32px)]">
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              // Wir weisen GSAP diesen Wrapper zu, damit GSAP nur den Wrapper bewegt...
               ref={(el) => {
                 if (el) cardsRef.current[index] = el;
               }}
               className="relative shrink-0"
-              style={{ zIndex: index + 1 }} // Sichert die natürliche Stapel-Reihenfolge ab
+              style={{ zIndex: index + 1 }}
             >
-              {/* ...und dein <article> behält exakt DEINEN Code inklusive ${feature.rotation} ohne überschrieben zu werden! */}
               <article
-                className={`flex flex-col w-103 h-125 justify-between rounded-[64px] border border-bio-dark bg-bio-white p-12 text-left transition-transform md:p-12 ${feature.rotation}`}
+                className={`flex flex-col w-103 h-125 justify-between rounded-[64px] border border-bio-dark bg-bio-white p-12 text-left transition-transform md:p-12 max-md:w-[calc(100vw-32px)] max-md:h-105 max-md:p-8 max-md:rounded-[40px] ${feature.rotation}`}
               >
-                {/* Icon oben rechts */}
                 <div className="flex justify-end">
                   <Image
                     src={feature.icon}
@@ -129,12 +115,11 @@ export function QualitySection() {
                   />
                 </div>
 
-                {/* Textbereich unten linksbündig */}
-                <div className="mt-16">
-                  <h3 className="whitespace-pre-line font-serif font-light text-3xl leading-tight text-bio-dark">
+                <div className="mt-16 max-md:mt-8">
+                  <h3 className="whitespace-pre-line font-serif font-light text-3xl leading-tight text-bio-dark max-md:text-[28px]">
                     {feature.title}
                   </h3>
-                  <p className="mt-3 leading-relaxed text-bio-dark md:text-sm">
+                  <p className="mt-3 leading-relaxed text-bio-dark md:text-sm max-md:text-[15px]">
                     {feature.description}
                   </p>
                 </div>

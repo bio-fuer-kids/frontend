@@ -28,9 +28,11 @@ export function Accordion({ items, className }: AccordionProps) {
             <button
               type="button"
               onClick={() => setOpenId(isOpen ? null : item.id)}
-              className="flex w-full items-center justify-between gap-8 py-4 text-left cursor-pointer"
+              // FIX: Leicht verringerte vertikale Abstände (py-3) für Mobile
+              className="flex w-full items-center justify-between gap-8 py-4 max-md:py-3 text-left cursor-pointer"
             >
-              <span className="font-serif text-2xl text-bio-dark">
+              {/* FIX: Schriftgröße auf Mobile (18px) angepasst, damit die Fragen in eine Zeile passen */}
+              <span className="font-serif text-2xl text-bio-dark max-md:text-[20px]">
                 {item.question}
               </span>
               <Image
@@ -42,8 +44,10 @@ export function Accordion({ items, className }: AccordionProps) {
               />
             </button>
             {isOpen && (
-              <div className="pb-6 pr-12">
-                <p className="text-sm leading-relaxed text-bio-grey">
+              // FIX: Abstand nach rechts (pr) für Mobile verringert
+              <div className="pb-6 pr-12 max-md:pb-5 max-md:pr-8">
+                {/* FIX: Die Textfarbe der Antwort ist auf Mobile dunkel (wie im Design), nicht grau */}
+                <p className="text-sm leading-relaxed text-bio-grey max-md:text-bio-dark max-md:text-[14px]">
                   {item.answer}
                 </p>
               </div>

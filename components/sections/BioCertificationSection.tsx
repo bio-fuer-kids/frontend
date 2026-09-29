@@ -5,7 +5,7 @@ export function BioCertificationSection() {
   return (
     <section
       // HIER DIE EINZIGE ÄNDERUNG: lg:px-62.5 schützt den Desktop, befreit aber das Tablet vom Quetsch-Rand
-      className="bg-bio-white py-16 md:py-25 lg:px-62.5"
+      className="bg-bio-white py-16 max-md:py-20 md:py-25 lg:px-62.5"
     >
       <Container className="flex flex-col items-center text-center">
         {/* Icon: Zentriert durch den Parent-Container (100% Unangetastet) */}
@@ -18,7 +18,7 @@ export function BioCertificationSection() {
         />
 
         {/* Text: max-w-117 regelt die saubere Breite für Desktop und Tablet perfekt (100% Unangetastet) */}
-        <p className="mt-4 max-w-125 text-[16px] leading-relaxed text-bio-dark max-lg:px-4">
+        <p className="mt-4 max-w-125 text-[16px] leading-relaxed text-bio-dark max-lg:px-4 max-md:w-94.5 max-md:px-2">
           Unser Unternehmen und jede einzelne Partnerschule sind nach der
           Bio-Außer-Haus-Verpflegung (Bio AHVV) zertifiziert und werden
           regelmäßig geprüft. Bei den letzten Audits erreichten die
@@ -29,7 +29,7 @@ export function BioCertificationSection() {
         {/* Button: Zentriert unter dem Text (100% Unangetastet) */}
         <button
           type="button"
-          className="mt-8 rounded-[24px] border border-bio-dark bg-transparent px-8 py-2.5 text-[14px] text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white"
+          className="mt-8 rounded-[24px] border border-bio-dark bg-transparent px-8 py-2.5 text-[14px] text-bio-dark transition-colors hover:bg-bio-dark hover:text-bio-white h-12"
         >
           Zertifikat ansehen (PDF)
         </button>

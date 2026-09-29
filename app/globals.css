@@ -80,7 +80,7 @@ body {
 }
 @utility text_slide {
   font-family: var(--font-inter);
-  font-weight: 250;
+  font-weight: 350;
   font-size: 16px;
   line-height: 1;
 }
