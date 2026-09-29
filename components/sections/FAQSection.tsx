@@ -88,7 +88,7 @@ export function FAQSection() {
   }, [activeFilter]);
 
   return (
-    <section id="faq" className="bg-bio-sand-beige pt-25 md:pt-30">
+    <section id="faq" className="bg-bio-sand-beige pt-25 md:pb-25">
       <Container className="mx-auto flex w-full max-w-4xl flex-col items-center">
         {/* Angepasster Header aus dem Beispiel */}
         <div className="mb-12 flex flex-col items-center text-center">

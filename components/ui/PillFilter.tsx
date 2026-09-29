@@ -16,8 +16,8 @@ export function PillFilter({
   className,
 }: PillFilterProps) {
   return (
-    <div className={cn("flex flex-wrap gap-2", className)}>
-      {options.map((option) => {
+    <div className={cn("flex flex-wrap gap-0", className)}>
+      {options.map((option, index) => {
         const isActive = option.id === activeId;
         return (
           <button
@@ -25,10 +25,11 @@ export function PillFilter({
             type="button"
             onClick={() => onChange(option.id)}
             className={cn(
-              "h-9 rounded-full border px-5 text-sm font-medium transition-colors duration-200 cursor-pointer",
+              "h-12 w-35.25 rounded-[20px] border px-6 py-3 text-sm font-medium transition-colors duration-200 cursor-pointer text-[16px]",
               isActive
                 ? "border-bio-dark bg-bio-dark text-bio-white"
                 : "border-bio-border bg-bio-white text-bio-dark hover:border-bio-dark",
+              index === 0 ? "md:w-19 " : "",
             )}
           >
             {option.label}

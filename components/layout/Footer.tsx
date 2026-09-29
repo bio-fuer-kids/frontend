@@ -5,12 +5,12 @@ import { Logo } from "@/components/ui/Logo";
 export function Footer() {
   return (
     <footer className="bg-bio-dark">
-      <div className="bg-white py-6">
+      <div className="bg-white py-8">
         <Container className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 md:flex-row">
-          <span className="font-inter text-[13px] text-bio-dark">
-            © 2025 Bio für Kids - Hamburg
+          <span className="font-inter text-[16px] text-bio-dark">
+            © 2025 Bio für Kids &middot; Hamburg
           </span>
-          <div className="flex items-center gap-6 font-inter text-[13px] text-bio-dark">
+          <div className="flex items-center gap-6 font-inter text-[16px] text-bio-dark">
             <a href="#kontakt" className="transition-opacity hover:opacity-60">
               Kontakt
             </a>

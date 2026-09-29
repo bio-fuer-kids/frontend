@@ -20,7 +20,7 @@ export function Accordion({ items, className }: AccordionProps) {
   const [openId, setOpenId] = useState<string | null>(null);
 
   return (
-    <div className={cn("divide-y divide-bio-dark", className)}>
+    <div className={cn("divide-y divide-bio-dark border-b", className)}>
       {items.map((item) => {
         const isOpen = openId === item.id;
         return (
