@@ -51,7 +51,7 @@ export function QualitySection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "center center",
+          start: "top 5%",
           end: "+=1500",
           pin: true,
           scrub: 0.5,
@@ -71,7 +71,7 @@ export function QualitySection() {
       });
     });
 
-    mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
+    mm.add("(min-width: 768px) and (max-width: 932px)", () => {
       gsap.set([cardsRef.current[1], cardsRef.current[2]], {
         x: "100vw",
         opacity: 0,
@@ -80,7 +80,7 @@ export function QualitySection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "center center",
+          start: "top 5%",
           end: "+=1500",
           pin: true,
           scrub: 0.5,
