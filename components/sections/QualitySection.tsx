@@ -133,7 +133,7 @@ export function QualitySection() {
               style={{ zIndex: index + 1 }}
             >
               <article
-                className={`flex flex-col h-125 justify-between rounded-[64px] border border-bio-dark bg-bio-white p-12 text-left transition-transform max-md:w-[calc(100vw-32px)] max-md:h-105 max-md:p-8 max-md:rounded-[40px] md:w-[clamp(280px,42vw,412px)] lg:w-[clamp(300px,31vw,412px)] xl:w-103 ${feature.rotation}`}
+                className={`flex flex-col h-125 justify-between rounded-[64px] border border-bio-dark bg-bio-white p-12 text-left transition-transform max-md:w-[calc(100vw-32px)] max-md:h-115 max-md:p-8 max-md:rounded-[40px] md:w-[clamp(280px,42vw,412px)] lg:w-[clamp(300px,31vw,412px)] xl:w-103 ${feature.rotation}`}
               >
                 <div className="flex justify-end">
                   <Image

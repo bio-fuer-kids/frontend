@@ -20,7 +20,7 @@ const stats = [
 export function HeroSection() {
   return (
     // FIX: max-md:mt-[72px] eingefügt! Da der Header auf Mobile "fixed" ist, braucht die HeroSection diesen Platzhalter nach oben.
-    <section className="max-md:mt-[72px] max-md:pt-16 md:pt-23 lg:pt-26 bg-bio-green-500">
+    <section className="max-md:mt-18 max-md:pt-16 md:pt-23 lg:pt-26 bg-bio-green-500">
       <Container className="flex flex-col items-center text-center">
         <h1 className="max-w-3xl mx-auto text-center font-serif font-light text-[48px] md:text-[60px] lg:text-[80px] leading-[1.1] text-bio-dark">
           <span className="max-md:hidden">
@@ -81,7 +81,7 @@ export function HeroSection() {
       <div className="mt-2 w-full bg-bio-white">
         <Container>
           {/* FIX: max-lg:gap-4 max-lg:px-4 für das Tablet eingefügt, damit die Texte bei 768px Platz zum Atmen haben */}
-          <div className="grid grid-cols-3 gap-2 px-2 max-lg:gap-4 max-lg:px-4 md:gap-8 md:px-8 lg:gap-30 lg:px-47 py-12 max-md:flex max-md:overflow-x-auto max-md:snap-x max-md:snap-mandatory max-md:scrollbar-none [&::-webkit-scrollbar]:hidden">
+          <div className="grid grid-cols-3 gap-2 px-2 max-lg:gap-4 max-lg:px-4 md:gap-8 md:px-8 lg:gap-30 lg:px-47 py-12 max-md:flex max-md:overflow-x-auto max-md:snap-x max-md:snap-mandatory max-md:scrollbar-none [&::-webkit-scrollbar]:hidden md:w-screen! max-sm:w-screen">
             {stats.map((stat) => (
               <div
                 key={stat.label}

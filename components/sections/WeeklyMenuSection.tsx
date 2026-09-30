@@ -39,15 +39,12 @@ export function WeeklyMenuSection() {
   return (
     <section
       id="speiseplan"
-      // FIX: max-md:py-16 zieht die gesamte Sektion auf Mobile etwas höher
       className="bg-bio-green-500 py-30 md:py-30 overflow-x-hidden max-md:py-16"
     >
       <Container className="flex flex-col items-center">
-        {/* Header */}
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center max-md:px-4">
           <SectionLabel> SPEISEPLAN</SectionLabel>
 
-          {/* FIX: max-md:w-full hebt das starre w-90 für Mobile auf. max-md:text-[40px] verhindert das Quetschen */}
           <h2 className="mt-3 w-90 max-md:w-full text-h2-section leading-none text-bio-dark md:text-5xl max-md:text-[40px]">
             <span className="max-md:hidden">Ein Blick in unsere Küche.</span>
             <span className="hidden max-md:block leading-[1.1]">
@@ -61,7 +58,6 @@ export function WeeklyMenuSection() {
             </span>
           </h2>
 
-          {/* FIX: max-md:mt-4 verringert den Abstand minimal, damit die Karten weiter oben ins Bild rutschen */}
           <p className="mt-3 max-w-124 text-[16px] text-bio-dark leading-relaxed max-md:mt-4 max-md:text-[15px]">
             <span className="max-md:hidden">
               Täglich bieten wir eine Hauptspeise mit verschiedenen Komponenten
@@ -69,7 +65,6 @@ export function WeeklyMenuSection() {
               vegetarische Alternative. Die genauen Speisepläne sind im
               Bestellportal einsehbar.
             </span>
-            {/* FIX: max-md:w-89.5 entfernt und durch max-md:w-full ersetzt, damit der Text den seitlichen Container-Abstand respektiert */}
             <span className="hidden max-md:block max-md:w-full m-auto font-medium">
               Ein Einblick in unsere Küche. Täglich bis zu 2 Gerichte zur
               Auswahl, davon mindestens eines vegetarisch. Die genauen
@@ -79,10 +74,8 @@ export function WeeklyMenuSection() {
           </p>
         </div>
 
-        {/* Karten-Container */}
-        {/* FIX: max-md:mt-8 zieht die Karten stärker in den sichtbaren Bereich */}
         <div className="mt-20 flex w-full max-w-316 flex-col max-md:mt-8">
-          <div className="flex flex-nowrap justify-start lg:justify-center -space-x-2 md:-space-x-3 w-screen lg:w-full relative left-1/2 lg:left-auto -translate-x-1/2 lg:translate-x-0 px-6 lg:px-0 scroll-px-6 overflow-x-auto snap-x snap-mandatory py-8 -my-8 scrollbar-none [&::-webkit-scrollbar]:hidden">
+          <div className="flex flex-nowrap justify-start lg:justify-center min-[970]:max-[1350px]:justify-start! -space-x-2 md:-space-x-3 w-screen lg:w-full min-[970]:max-[1350px]:w-screen! relative left-1/2 lg:left-auto min-[970]:max-[1350px]:left-1/2! -translate-x-1/2 lg:translate-x-0 min-[970]:max-[1350px]:-translate-x-1/2! px-6 lg:px-0 min-[1194px]:max-[1350px]:px-6! scroll-px-6 overflow-x-auto snap-x snap-mandatory py-8 -my-8 scrollbar-none [&::-webkit-scrollbar]:hidden">
             {weekDays.map((item, index) => (
               <article
                 key={item.day}
@@ -109,14 +102,12 @@ export function WeeklyMenuSection() {
           </div>
         </div>
 
-        {/* Zusätzlicher Hinweistext NUR für Mobile */}
         <p className="hidden max-md:block mt-6 text-center text-[14px] leading-relaxed text-bio-dark">
           Beispielhafter Speiseplan. Wird
           <br />
           alle 2–3 Monate aktualisiert.
         </p>
 
-        {/* Buttons ganz unten */}
         <div className="mt-12 flex flex-col items-center gap-6 md:flex-row max-md:mt-10">
           <button
             type="button"
