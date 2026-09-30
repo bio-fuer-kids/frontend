@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 
+// DEIN ORIGINAL-ARRAY: Wird NUR auf dem Desktop genutzt und bleibt zu 100% unangetastet!
 const navLinks = [
   { href: "#speiseplan", label: "Speiseplan" },
   { href: "#unseressen", label: "Unser Essen" },
@@ -12,13 +13,34 @@ const navLinks = [
   { href: "#kontakt", label: "Kontakt" },
 ];
 
+// NEUES ARRAY: Wird NUR im Mobile/Tablet Overlay-Menü genutzt (Reihenfolge nach Design)
+const overlayNavLinks = [
+  { href: "#unseressen", label: "Unser Essen" },
+  { href: "#speiseplan", label: "Speiseplan" },
+  { href: "#ueber-uns", label: "Über Uns" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#kontakt", label: "Kontakt" },
+];
+
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // FIX: Verhindert das Scrollen der Seite im Hintergrund, solange das Overlay-Menü offen ist
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMenuOpen]);
+
   return (
     <>
-      {/* FIX: max-lg:h-auto hinzugefügt. Der Header wächst auf dem Tablet flüssig mit! lg:h-[173px] schützt dein Desktop-Design. */}
-      <header className="w-full max-lg:h-auto lg:h-[173px] max-md:fixed max-md:top-0 max-md:left-0 max-md:z-[999] bg-bio-green-500 font-light">
+      {/* Dein Original Header-Wrapper */}
+      <header className="w-full h-173px max-md:h-auto max-md:fixed max-md:top-0 max-md:left-0 max-md:z-[999] bg-bio-green-500 font-light">
         <Container className="flex items-center justify-between px-2 py-4 max-md:p-4">
           <Link href="/" className="flex items-center gap-2 z-50">
             <span className="border rounded-[20px] py-2 px-4 gap-2 bg-bio-white max-md:border-bio-dark max-md:text-bio-dark">
@@ -26,6 +48,7 @@ export function Header() {
             </span>
           </Link>
 
+          {/* DESKTOP NAV: Nutzt DEIN ORIGINAL navLinks Array! Unangetastet. */}
           <nav className="hidden lg:flex items-center gap-0">
             {navLinks.map((link) => (
               <Link
@@ -50,9 +73,10 @@ export function Header() {
         </Container>
       </header>
 
-      {/* OVERLAY MENÜ (Unverändert) */}
+      {/* OVERLAY MENÜ (Für Tablet und Mobile) */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-[1000] flex flex-col bg-bio-green-500 overflow-y-auto">
+        // overflow-y-auto bleibt für Tablets erhalten, max-md:overflow-hidden sperrt das vertikale Scrollen auf Handys ab
+        <div className="fixed inset-0 z-[1000] flex flex-col bg-bio-green-500 overflow-y-auto max-md:overflow-hidden">
           <div className="flex items-center justify-between px-4 py-4 md:px-6">
             <span className="border rounded-[20px] py-2 px-4 bg-bio-white text-bio-dark max-md:border-bio-dark">
               Bio für Kids
@@ -65,18 +89,22 @@ export function Header() {
             </button>
           </div>
 
-          <nav className="mt-8 flex flex-col items-start gap-4 px-4 md:px-6 max-md:mt-[25vh] max-md:pb-12">
-            {navLinks.map((link) => (
+          {/* 
+            Dein originales mt-8 für Tablet bleibt hier erhalten!
+            max-md:mt-auto und max-md:mb-16 drücken das Menü auf dem Handy exakt nach unten (wie im Design), ohne Scroll-Bug.
+          */}
+          <nav className="mt-8 flex flex-col items-start gap-3 px-4 md:px-6 max-md:mt-auto max-md:mb-16 max-md:pb-0 scrollbar-none overflow-y-hidden">
+            {overlayNavLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
-                className="border rounded-[20px] bg-bio-white px-6 py-2 text-[18px] text-bio-dark max-md:border-bio-dark max-md:w-max max-md:py-3"
+                className="border rounded-[20px] bg-bio-white px-6 py-2 text-[18px] text-bio-dark max-md:border-bio-dark max-md:w-max max-md:py-2"
               >
                 {link.label}
               </Link>
             ))}
-            <button className="mt-2 border rounded-[20px] border-bio-dark bg-bio-dark px-6 py-2 text-[18px] text-bio-green-500 max-md:w-max max-md:py-3">
+            <button className="mt-2 border rounded-[20px] border-bio-dark bg-bio-dark px-6 py-2 text-[18px] text-bio-green-500 max-md:w-max max-md:py-3 max-md:mt-0">
               Zum Bestellportal
             </button>
           </nav>
