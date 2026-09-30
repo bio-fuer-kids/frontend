@@ -49,12 +49,13 @@ export function QualitySection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          // FIX für Mobile: Die Sektion muss viel weiter nach oben rutschen (weit ins Minus),
-          // damit die Karten unten aus der Browser-Leiste herauskommen.
-          start: "top -30%",
+          // GSAP FIX: center center hält es immer in der Mitte, egal wie hoch der Bildschirm ist
+          start: "center center",
           end: "+=1500",
           pin: true,
           scrub: 0.5,
+          // GSAP FIX: Berechnet die Höhe neu, sobald das Handy gedreht wird!
+          invalidateOnRefresh: true,
         },
       });
 
@@ -81,12 +82,11 @@ export function QualitySection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          // FIX für Tablet: Die Sektion darf erst kurz vor dem oberen Rand pinnen,
-          // damit nicht so viel weißer Raum unter dem Text entsteht.
-          start: "top 5%",
+          start: "center center",
           end: "+=1500",
           pin: true,
           scrub: 0.5,
+          invalidateOnRefresh: true,
         },
       });
 
@@ -115,17 +115,23 @@ export function QualitySection() {
       <Container className="flex flex-col items-center text-center px-4 md:px-8">
         <SectionLabel>UNSER ESSEN</SectionLabel>
 
-        <h2 className="mt-3 max-md:mt-3 max-w-xl text-h2-section text-4xl leading-12 text-bio-dark md:text-5xl max-md:text-[40px] max-md:w-81.5">
+        {/* Feste Breiten w-81.5 für Mobile entfernt, damit schmale iPhones nicht überlaufen */}
+        <h2 className="mt-3 max-md:mt-3 max-w-xl text-h2-section text-4xl leading-12 text-bio-dark md:text-5xl max-md:text-[40px] max-md:w-full max-md:px-4">
           Qualität, die man schmeckt
         </h2>
 
-        <p className="mt-3 max-md:mt-3 max-w-134 text-[16px] text-bio-dark leading-normal max-md:mb-16 max-md:w-80">
+        <p className="mt-3 max-md:mt-3 max-w-134 text-[16px] text-bio-dark leading-normal max-md:mb-16 max-md:w-full max-md:px-4">
           Wir kochen täglich frisch und gesund – mit echten Köchen vor Ort in
           der Schulküche. So bleiben Vitamine und Inhaltsstoffe erhalten, und
           wir wissen genau, was auf den Tisch kommt.
         </p>
 
-        <div className="mt-25 w-full flex justify-center items-center md:-space-x-55 lg:space-x-0 max-md:mt-16 max-md:-space-x-[calc(100vw-32px)]">
+        {/* 
+          FLUID DESIGN OVERLAP: 
+          md:-space-x-[18vw] nutzt fließende Prozente statt starrer Pixel auf dem Tablet. 
+          lg:space-x-0 schaltet auf dem Desktop wieder komplett auf dein Original um.
+        */}
+        <div className="mt-25 w-full flex justify-center items-center md:-space-x-[18vw] lg:space-x-0 max-md:mt-16 max-md:-space-x-[calc(100vw-32px)]">
           {features.map((feature, index) => (
             <div
               key={feature.title}
@@ -136,7 +142,7 @@ export function QualitySection() {
               style={{ zIndex: index + 1 }}
             >
               <article
-                className={`flex flex-col w-103 h-125 justify-between rounded-[64px] border border-bio-dark bg-bio-white p-12 text-left transition-transform md:p-12 max-md:w-[calc(100vw-32px)] max-md:h-105 max-md:p-8 max-md:rounded-[40px] ${feature.rotation}`}
+                className={`flex flex-col h-125 justify-between rounded-[64px] border border-bio-dark bg-bio-white p-12 text-left transition-transform max-md:w-[calc(100vw-32px)] max-md:h-105 max-md:p-8 max-md:rounded-[40px] md:w-[clamp(280px,42vw,412px)] lg:w-[clamp(300px,31vw,412px)] xl:w-103 ${feature.rotation}`}
               >
                 <div className="flex justify-end">
                   <Image
