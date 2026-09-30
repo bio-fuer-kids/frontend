@@ -51,7 +51,7 @@ export function QualitySection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 5%",
+          start: "top -24%",
           end: "+=1500",
           pin: true,
           scrub: 0.5,
