@@ -39,14 +39,16 @@ export function WeeklyMenuSection() {
   return (
     <section
       id="speiseplan"
-      className="bg-bio-green-500 py-30 md:py-30 overflow-x-hidden max-md:py-20"
+      // FIX: max-md:py-16 zieht die gesamte Sektion auf Mobile etwas höher
+      className="bg-bio-green-500 py-30 md:py-30 overflow-x-hidden max-md:py-16"
     >
       <Container className="flex flex-col items-center">
-        {/* Header (Desktop Unangetastet, Mobile angepasst) */}
+        {/* Header */}
         <div className="mx-auto flex max-w-2xl flex-col items-center text-center max-md:px-4">
           <SectionLabel> SPEISEPLAN</SectionLabel>
 
-          <h2 className="mt-3 w-90 text-h2-section leading-none text-bio-dark md:text-5xl max-md:text-[44px]">
+          {/* FIX: max-md:w-full hebt das starre w-90 für Mobile auf. max-md:text-[40px] verhindert das Quetschen */}
+          <h2 className="mt-3 w-90 max-md:w-full text-h2-section leading-none text-bio-dark md:text-5xl max-md:text-[40px]">
             <span className="max-md:hidden">Ein Blick in unsere Küche.</span>
             <span className="hidden max-md:block leading-[1.1]">
               Was diese
@@ -59,14 +61,16 @@ export function WeeklyMenuSection() {
             </span>
           </h2>
 
-          <p className="mt-3 max-w-124 text-[16px] text-bio-dark leading-relaxed max-md:mt-6 max-md:text-[15px]">
+          {/* FIX: max-md:mt-4 verringert den Abstand minimal, damit die Karten weiter oben ins Bild rutschen */}
+          <p className="mt-3 max-w-124 text-[16px] text-bio-dark leading-relaxed max-md:mt-4 max-md:text-[15px]">
             <span className="max-md:hidden">
               Täglich bieten wir eine Hauptspeise mit verschiedenen Komponenten
               zur Auswahl. Zu jedem Fleisch- oder Fischgericht gibt es eine
               vegetarische Alternative. Die genauen Speisepläne sind im
               Bestellportal einsehbar.
             </span>
-            <span className="hidden max-md:block max-md:w-89.5 m-auto font-medium">
+            {/* FIX: max-md:w-89.5 entfernt und durch max-md:w-full ersetzt, damit der Text den seitlichen Container-Abstand respektiert */}
+            <span className="hidden max-md:block max-md:w-full m-auto font-medium">
               Ein Einblick in unsere Küche. Täglich bis zu 2 Gerichte zur
               Auswahl, davon mindestens eines vegetarisch. Die genauen
               Speisepläne sind im Bestellportal einsehbar und werden regelmäßig
@@ -76,12 +80,8 @@ export function WeeklyMenuSection() {
         </div>
 
         {/* Karten-Container */}
-        <div className="mt-20 flex w-full max-w-316 flex-col max-md:mt-12">
-          {/* 
-            DER FIX: 
-            px-6 und scroll-px-6 garantieren 24px Abstand auf Mobile/Tablet (1:1 Deckungsgleich mit Container).
-            lg:px-0 und lg:justify-center zentrieren es auf Desktop perfekt, ohne dass das Padding kaputt geht.
-          */}
+        {/* FIX: max-md:mt-8 zieht die Karten stärker in den sichtbaren Bereich */}
+        <div className="mt-20 flex w-full max-w-316 flex-col max-md:mt-8">
           <div className="flex flex-nowrap justify-start lg:justify-center -space-x-2 md:-space-x-3 w-screen lg:w-full relative left-1/2 lg:left-auto -translate-x-1/2 lg:translate-x-0 px-6 lg:px-0 scroll-px-6 overflow-x-auto snap-x snap-mandatory py-8 -my-8 scrollbar-none [&::-webkit-scrollbar]:hidden">
             {weekDays.map((item, index) => (
               <article
@@ -105,7 +105,6 @@ export function WeeklyMenuSection() {
                 </div>
               </article>
             ))}
-            {/* Unsichtbarer Abstandhalter, damit die letzte Karte nicht am rechten Rand klebt */}
             <div className="shrink-0 w-6 lg:hidden" />
           </div>
         </div>
