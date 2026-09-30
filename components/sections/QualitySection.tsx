@@ -39,7 +39,8 @@ export function QualitySection() {
     gsap.registerPlugin(ScrollTrigger);
     let mm = gsap.matchMedia();
 
-    mm.add("(max-width: 1023px)", () => {
+    // 1. Setup für MOBILE (< 768px)
+    mm.add("(max-width: 767px)", () => {
       gsap.set([cardsRef.current[1], cardsRef.current[2]], {
         x: "100vw",
         opacity: 0,
@@ -48,9 +49,41 @@ export function QualitySection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          // GEÄNDERT: "top top" lässt dich weiter scrollen, bis die Sektion ganz oben am Rand ist.
-          // Falls die Karten immer noch angeschnitten sind, probiere "top -10%" oder "center center".
-          start: "top -14%",
+          // FIX für Mobile: Die Sektion muss viel weiter nach oben rutschen (weit ins Minus),
+          // damit die Karten unten aus der Browser-Leiste herauskommen.
+          start: "top -30%",
+          end: "+=1500",
+          pin: true,
+          scrub: 0.5,
+        },
+      });
+
+      tl.to(cardsRef.current[1], {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      }).to(cardsRef.current[2], {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      });
+    });
+
+    // 2. Setup für TABLET (768px bis 1023px)
+    mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
+      gsap.set([cardsRef.current[1], cardsRef.current[2]], {
+        x: "100vw",
+        opacity: 0,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          // FIX für Tablet: Die Sektion darf erst kurz vor dem oberen Rand pinnen,
+          // damit nicht so viel weißer Raum unter dem Text entsteht.
+          start: "top 5%",
           end: "+=1500",
           pin: true,
           scrub: 0.5,
@@ -86,7 +119,7 @@ export function QualitySection() {
           Qualität, die man schmeckt
         </h2>
 
-        <p className="mt-3 max-md:mt-3 max-w-134 text-[16px] text-bio-dark leading-normal  max-md:mb-16 max-md:w-80">
+        <p className="mt-3 max-md:mt-3 max-w-134 text-[16px] text-bio-dark leading-normal max-md:mb-16 max-md:w-80">
           Wir kochen täglich frisch und gesund – mit echten Köchen vor Ort in
           der Schulküche. So bleiben Vitamine und Inhaltsstoffe erhalten, und
           wir wissen genau, was auf den Tisch kommt.

@@ -12,7 +12,7 @@ import { HeroSection } from "@/components/sections/HeroSection";
 
 export default function Home() {
   return (
-    <div className="mx-auto w-full overflow-x-hidden bg-bio-white">
+    <div className="mx-auto w-full overflow-x-hidden bg-bio-grey">
       <Header />
       <HeroSection />
       <main>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import type { Viewport } from "next";
 
 const inter = localFont({
   src: "../public/fonts/Inter/Inter-VariableFont_opsz,wght.ttf",
@@ -25,6 +26,10 @@ const montaguSlab_light = localFont({
 });
 
 //
+
+export const viewport: Viewport = {
+  themeColor: "#26bb55", // Das ist dein exaktes --bio-green-500
+};
 
 export const metadata: Metadata = {
   title: "Bio für Kids – Täglich gekocht. Frisch & gesund.",

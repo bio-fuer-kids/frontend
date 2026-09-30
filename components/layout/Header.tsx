@@ -17,8 +17,8 @@ export function Header() {
 
   return (
     <>
-      {/* MOBILE: fixed position am oberen Rand hinzugefügt. AB TABLET: Dein Original-Code */}
-      <header className="w-full h-173px max-md:h-auto max-md:fixed max-md:top-0 max-md:left-0 max-md:z-[999] bg-bio-green-500 font-light">
+      {/* FIX: max-lg:h-auto hinzugefügt. Der Header wächst auf dem Tablet flüssig mit! lg:h-[173px] schützt dein Desktop-Design. */}
+      <header className="w-full max-lg:h-auto lg:h-[173px] max-md:fixed max-md:top-0 max-md:left-0 max-md:z-[999] bg-bio-green-500 font-light">
         <Container className="flex items-center justify-between px-2 py-4 max-md:p-4">
           <Link href="/" className="flex items-center gap-2 z-50">
             <span className="border rounded-[20px] py-2 px-4 gap-2 bg-bio-white max-md:border-bio-dark max-md:text-bio-dark">
@@ -48,8 +48,6 @@ export function Header() {
             Menu
           </button>
         </Container>
-
-        {/* HERO SECTION MUSS AUF MOBILE EINEN ABSTAND NACH OBEN BEKOMMEN, DA DER HEADER JETZT FIXED IST */}
       </header>
 
       {/* OVERLAY MENÜ (Unverändert) */}
