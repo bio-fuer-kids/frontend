@@ -37,9 +37,11 @@ export function QualitySection() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
     let mm = gsap.matchMedia();
 
-    // 1. Setup für MOBILE (< 768px)
     mm.add("(max-width: 767px)", () => {
       gsap.set([cardsRef.current[1], cardsRef.current[2]], {
         x: "100vw",
@@ -49,12 +51,10 @@ export function QualitySection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          // GSAP FIX: center center hält es immer in der Mitte, egal wie hoch der Bildschirm ist
           start: "center center",
           end: "+=1500",
           pin: true,
           scrub: 0.5,
-          // GSAP FIX: Berechnet die Höhe neu, sobald das Handy gedreht wird!
           invalidateOnRefresh: true,
         },
       });
@@ -72,7 +72,6 @@ export function QualitySection() {
       });
     });
 
-    // 2. Setup für TABLET (768px bis 1023px)
     mm.add("(min-width: 768px) and (max-width: 1023px)", () => {
       gsap.set([cardsRef.current[1], cardsRef.current[2]], {
         x: "100vw",
@@ -115,7 +114,6 @@ export function QualitySection() {
       <Container className="flex flex-col items-center text-center px-4 md:px-8">
         <SectionLabel>UNSER ESSEN</SectionLabel>
 
-        {/* Feste Breiten w-81.5 für Mobile entfernt, damit schmale iPhones nicht überlaufen */}
         <h2 className="mt-3 max-md:mt-3 max-w-xl text-h2-section text-4xl leading-12 text-bio-dark md:text-5xl max-md:text-[40px] max-md:w-full max-md:px-4">
           Qualität, die man schmeckt
         </h2>
@@ -126,12 +124,7 @@ export function QualitySection() {
           wir wissen genau, was auf den Tisch kommt.
         </p>
 
-        {/* 
-          FLUID DESIGN OVERLAP: 
-          md:-space-x-[18vw] nutzt fließende Prozente statt starrer Pixel auf dem Tablet. 
-          lg:space-x-0 schaltet auf dem Desktop wieder komplett auf dein Original um.
-        */}
-        <div className="mt-25 w-full flex justify-center items-center md:-space-x-[18vw] lg:space-x-0 max-md:mt-16 max-md:-space-x-[calc(100vw-32px)]">
+        <div className="mt-25 w-full flex justify-center items-center md:space-x-[-18vw] lg:-space-x-5 max-md:mt-16 max-md:-space-x-[calc(100vw-32px)]">
           {features.map((feature, index) => (
             <div
               key={feature.title}
