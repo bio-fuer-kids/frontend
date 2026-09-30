@@ -55,7 +55,6 @@ export function QualitySection() {
           end: "+=1500",
           pin: true,
           scrub: 0.5,
-          invalidateOnRefresh: true,
         },
       });
 
@@ -85,7 +84,6 @@ export function QualitySection() {
           end: "+=1500",
           pin: true,
           scrub: 0.5,
-          invalidateOnRefresh: true,
         },
       });
 
