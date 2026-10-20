@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/Button";
 
 const galleryImages = [
   "/hero_section/hero_bild_1.jpg",
-  "/hero_section/hero_bild_3.jpg",
+  "/hero_section/hero_bild_6.png",
+  "/hero_section/hero_bild_7.jpg",
   "/hero_section/hero_bild_4_2.jpg",
-  "/hero_section/hero_bild_1_2.jpg",
-  "/hero_section/hero_bild_5.jpg",
-  "/hero_section/hero_bild_2.jpg",
+  "/hero_section/hero_bild_3.jpg",
+  "/ueber-uns-section-bild-1.jpg",
 ];
 
 const stats = [
