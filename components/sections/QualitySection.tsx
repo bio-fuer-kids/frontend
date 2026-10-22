@@ -40,11 +40,11 @@ export function QualitySection() {
 
     ScrollTrigger.config({ ignoreMobileResize: true });
 
-    let mm = gsap.matchMedia();
+    const mm = gsap.matchMedia();
 
     mm.add("(max-width: 767px)", () => {
       gsap.set([cardsRef.current[1], cardsRef.current[2]], {
-        x: "100vw",
+        y: "100vh",
         opacity: 0,
       });
 
@@ -59,12 +59,12 @@ export function QualitySection() {
       });
 
       tl.to(cardsRef.current[1], {
-        x: 0,
+        y: 0,
         opacity: 1,
         duration: 1,
         ease: "power1.out",
       }).to(cardsRef.current[2], {
-        x: 0,
+        y: 0,
         opacity: 1,
         duration: 1,
         ease: "power1.out",
@@ -73,7 +73,7 @@ export function QualitySection() {
 
     mm.add("(min-width: 768px) and (max-width: 932px)", () => {
       gsap.set([cardsRef.current[1], cardsRef.current[2]], {
-        x: "100vw",
+        y: "100vh",
         opacity: 0,
       });
 
@@ -88,12 +88,12 @@ export function QualitySection() {
       });
 
       tl.to(cardsRef.current[1], {
-        x: 0,
+        y: 0,
         opacity: 1,
         duration: 1,
         ease: "power1.out",
       }).to(cardsRef.current[2], {
-        x: 0,
+        y: 0,
         opacity: 1,
         duration: 1,
         ease: "power1.out",

@@ -30,7 +30,7 @@ export function UnserEssen() {
       className="pb-2 md:pb-25 lg:pb-2 pt-20 md:pt-25 lg:pt-30 bg-bio-sand-beige overflow-hidden max-md:py-20"
     >
       <Container className="flex flex-col items-center">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto max-lg:px-4">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto max-lg:px-3">
           <SectionLabel>WARUM BIO?</SectionLabel>
 
           {/* FIX: Schrift minimal auf 38px reduziert, damit "Bewusst essen." sicher in eine Zeile auf dem Handy passt */}

@@ -16,10 +16,12 @@ export function PillFilter({
   className,
 }: PillFilterProps) {
   return (
-    // FIX: max-md:flex-nowrap für den Scroll-Effekt und max-md:gap-2 für den Abstand zwischen den Buttons
     <div
       className={cn(
-        "flex flex-wrap gap-0 max-md:flex-nowrap max-md:gap-2",
+        // Desktop & Tablet: Bleibt exakt wie dein Original (flex-wrap)
+        "flex flex-wrap gap-0",
+        // Mobile: Horizontaler Scroll, bricht dank negativem Margin randlos aus dem Container aus
+        "max-md:flex-nowrap max-md:gap-0 max-md:overflow-x-auto max-md:scrollbar-none max-md:-mx-4 max-md:px-4 max-md:w-[calc(100%+2rem)]",
         className,
       )}
     >
@@ -36,8 +38,8 @@ export function PillFilter({
                 ? "border-bio-dark bg-bio-dark text-bio-white"
                 : "border-bio-border bg-bio-white text-bio-dark hover:border-bio-dark",
               index === 0 ? "md:w-19 " : "",
-              // FIX: Auf Mobile passen sich die Buttons dem Text an (w-auto), brechen nicht um (whitespace-nowrap) und sind etwas kompakter
-              "max-md:w-auto max-md:whitespace-nowrap max-md:px-5 max-md:text-[14px]",
+              // Mobile: Kein Schrumpfen, voller Text, sauberes Scrollen
+              "max-md:w-auto max-md:whitespace-nowrap max-md:px-5 max-md:text-[14px] max-md:shrink-0",
             )}
           >
             {option.label}

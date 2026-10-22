@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 
@@ -24,6 +24,73 @@ const overlayNavLinks = [
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [headerBackgroundColor, setHeaderBackgroundColor] = useState<
+    string | null
+  >(null);
+
+  useEffect(() => {
+    let animationFrame = 0;
+
+    const updateHeaderBackground = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(() => {
+        const header = document.querySelector("header");
+        if (!header) return;
+
+        const headerBounds = header.getBoundingClientRect();
+        const x = Math.min(
+          Math.max(window.innerWidth / 2, 0),
+          window.innerWidth - 1,
+        );
+        const y = Math.min(
+          Math.max(headerBounds.bottom + 1, 0),
+          window.innerHeight - 1,
+        );
+        let element = document.elementFromPoint(x, y);
+
+        while (element && element !== document.documentElement) {
+          const backgroundColor = window.getComputedStyle(element).backgroundColor;
+          if (backgroundColor !== "rgba(0, 0, 0, 0)") {
+            setHeaderBackgroundColor(backgroundColor);
+            return;
+          }
+          element = element.parentElement;
+        }
+      });
+    };
+
+    updateHeaderBackground();
+    window.addEventListener("scroll", updateHeaderBackground, {
+      passive: true,
+    });
+    window.addEventListener("resize", updateHeaderBackground);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", updateHeaderBackground);
+      window.removeEventListener("resize", updateHeaderBackground);
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!headerBackgroundColor) return;
+
+    const themeColorMetas = document.querySelectorAll<HTMLMetaElement>(
+      'meta[name="theme-color"]',
+    );
+
+    if (themeColorMetas.length === 0) {
+      const themeColorMeta = document.createElement("meta");
+      themeColorMeta.name = "theme-color";
+      document.head.appendChild(themeColorMeta);
+      themeColorMeta.content = headerBackgroundColor;
+      return;
+    }
+
+    themeColorMetas.forEach((themeColorMeta) => {
+      themeColorMeta.content = headerBackgroundColor;
+    });
+  }, [headerBackgroundColor]);
 
   // FIX: Verhindert das Scrollen der Seite im Hintergrund, solange das Overlay-Menü offen ist
   useEffect(() => {
@@ -40,7 +107,14 @@ export function Header() {
   return (
     <>
       {/* Dein Original Header-Wrapper */}
-      <header className="w-full h-173px max-md:h-auto max-md:fixed max-md:top-0 max-md:left-0 max-md:z-[999] bg-bio-green-500 font-light">
+      <header
+        style={
+          headerBackgroundColor
+            ? { backgroundColor: headerBackgroundColor }
+            : undefined
+        }
+        className="w-full h-173px max-md:h-auto max-md:fixed max-md:top-0 max-md:left-0 max-md:z-999 bg-bio-green-500 font-light"
+      >
         <Container className="flex items-center justify-between px-2 py-4 max-md:p-4">
           <Link href="/" className="flex items-center gap-2 z-50">
             <span className="border rounded-[20px] py-2 px-4 gap-2 bg-bio-white max-md:border-bio-dark max-md:text-bio-dark">
@@ -76,7 +150,7 @@ export function Header() {
       {/* OVERLAY MENÜ (Für Tablet und Mobile) */}
       {isMenuOpen && (
         // overflow-y-auto bleibt für Tablets erhalten, max-md:overflow-hidden sperrt das vertikale Scrollen auf Handys ab
-        <div className="fixed inset-0 z-[1000] flex flex-col bg-bio-green-500 overflow-y-auto max-md:overflow-hidden">
+        <div className="fixed inset-0 z-1000 flex flex-col bg-bio-green-500 overflow-y-auto max-md:overflow-hidden">
           <div className="flex items-center justify-between px-4 py-4 md:px-6">
             <span className="border rounded-[20px] py-2 px-4 bg-bio-white text-bio-dark max-md:border-bio-dark">
               Bio für Kids
@@ -93,7 +167,7 @@ export function Header() {
             Dein originales mt-8 für Tablet bleibt hier erhalten!
             max-md:mt-auto und max-md:mb-16 drücken das Menü auf dem Handy exakt nach unten (wie im Design), ohne Scroll-Bug.
           */}
-          <nav className="mt-8 flex flex-col items-start gap-3 px-4 md:px-6 max-md:mt-auto max-md:mb-16 max-md:pb-0 scrollbar-none overflow-y-hidden">
+          <nav className="mt-8 flex flex-col items-start gap-3 px-4 md:px-6 max-md:mt-auto max-md:mb-10 max-md:pb-0 scrollbar-none overflow-y-hidden">
             {overlayNavLinks.map((link) => (
               <Link
                 key={link.href}
